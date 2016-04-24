@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E5CE8581CCD4FF4004746C0 /* MenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CE8571CCD4FF4004746C0 /* MenuManager.swift */; };
 		2E69CF6F1CCCEE650058B069 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E69CF6E1CCCEE650058B069 /* AppDelegate.swift */; };
 		2E69CF711CCCEE650058B069 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2E69CF701CCCEE650058B069 /* GameScene.sks */; };
 		2E69CF731CCCEE650058B069 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E69CF721CCCEE650058B069 /* GameScene.swift */; };
@@ -14,9 +15,11 @@
 		2E69CF781CCCEE650058B069 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E69CF761CCCEE650058B069 /* Main.storyboard */; };
 		2E69CF7A1CCCEE650058B069 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E69CF791CCCEE650058B069 /* Assets.xcassets */; };
 		2E69CF7D1CCCEE650058B069 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E69CF7B1CCCEE650058B069 /* LaunchScreen.storyboard */; };
+		2E69CF871CCCEF730058B069 /* WinImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 2E69CF861CCCEF730058B069 /* WinImages.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E5CE8571CCD4FF4004746C0 /* MenuManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuManager.swift; sourceTree = "<group>"; };
 		2E69CF6B1CCCEE650058B069 /* MyGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E69CF6E1CCCEE650058B069 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E69CF701CCCEE650058B069 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -26,6 +29,7 @@
 		2E69CF791CCCEE650058B069 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E69CF7C1CCCEE650058B069 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2E69CF7E1CCCEE650058B069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E69CF861CCCEF730058B069 /* WinImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = WinImages.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +43,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E5CE8561CCD4FD7004746C0 /* MenuManager */ = {
+			isa = PBXGroup;
+			children = (
+				2E5CE8571CCD4FF4004746C0 /* MenuManager.swift */,
+			);
+			name = MenuManager;
+			sourceTree = "<group>";
+		};
 		2E69CF621CCCEE650058B069 = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +70,8 @@
 		2E69CF6D1CCCEE650058B069 /* MyGame */ = {
 			isa = PBXGroup;
 			children = (
+				2E5CE8561CCD4FD7004746C0 /* MenuManager */,
+				2E69CF861CCCEF730058B069 /* WinImages.atlas */,
 				2E69CF6E1CCCEE650058B069 /* AppDelegate.swift */,
 				2E69CF701CCCEE650058B069 /* GameScene.sks */,
 				2E69CF721CCCEE650058B069 /* GameScene.swift */,
@@ -130,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E69CF711CCCEE650058B069 /* GameScene.sks in Resources */,
+				2E69CF871CCCEF730058B069 /* WinImages.atlas in Resources */,
 				2E69CF7D1CCCEE650058B069 /* LaunchScreen.storyboard in Resources */,
 				2E69CF7A1CCCEE650058B069 /* Assets.xcassets in Resources */,
 				2E69CF781CCCEE650058B069 /* Main.storyboard in Resources */,
@@ -143,6 +158,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E5CE8581CCD4FF4004746C0 /* MenuManager.swift in Sources */,
 				2E69CF731CCCEE650058B069 /* GameScene.swift in Sources */,
 				2E69CF751CCCEE650058B069 /* GameViewController.swift in Sources */,
 				2E69CF6F1CCCEE650058B069 /* AppDelegate.swift in Sources */,
@@ -295,6 +311,7 @@
 				2E69CF831CCCEE650058B069 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

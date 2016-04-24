@@ -26,6 +26,9 @@ class GameViewController: UIViewController {
             /* Set the scale mode to scale to fit the window */
             scene.scaleMode = .AspectFill
             
+            /* Disable Multiple Touches*/
+            skView.multipleTouchEnabled = false
+            
             skView.presentScene(scene)
         }
     }
