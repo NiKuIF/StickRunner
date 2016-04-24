@@ -25,6 +25,8 @@ class GameScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         
+        physicsWorld.gravity = CGVectorMake(0.0, -20)
+        
         // create MenuManager and setup First Start
         menu_manager = MenuManager(self_: self)
         menu_manager.setupFirstStart()
@@ -34,7 +36,6 @@ class GameScene: SKScene {
         
         // create Hero
         hero = Hero(self_: self)
-        
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -63,7 +64,14 @@ class GameScene: SKScene {
                     menu_manager.gamePause()
                     game_state = GameState.GAME_PAUSE
                 }
+                else
+                {
+                    // jump Action
+                    NSLog("JUMP Action")
+                    hero.jump()
+                }
             }
+            
         }
         else if(game_state == GameState.GAME_PAUSE)
         {
