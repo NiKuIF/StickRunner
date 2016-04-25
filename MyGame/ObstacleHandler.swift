@@ -11,7 +11,9 @@ import SpriteKit
 
 class ObstacleHandler {
     
-    var main_scene: SKScene
+    private var main_scene: SKScene
+    private var generationTimer: NSTimer?
+    var squares = [ObstacleSquare]()
     
     init(self_: SKScene){
         main_scene = self_;
@@ -26,8 +28,34 @@ class ObstacleHandler {
         main_scene.addChild(base_line)
     }
     
-    func createObstacles(){
+    func startGeneratingWallsEvery(seconds: NSTimeInterval) {
+        generationTimer = NSTimer.scheduledTimerWithTimeInterval(seconds, target: self, selector: #selector(ObstacleHandler.generateSquare), userInfo: nil, repeats: true)
+    }
+    
+    // @objc prefix for Selector usage
+    @objc func generateSquare() {
         
+        NSLog("generate Square")
+        
+        let wall = ObstacleSquare()
+        wall.position.x = main_scene.size.width
+        wall.position.y = main_scene.size.height/2 - main_scene.size.height/8
+        squares.append(wall)
+        main_scene.addChild(wall)
+
+        /*
+         x: main_scene.size.width/3,
+         y: main_scene.size.height/2 - main_scene.size.height/16)
+         */
+        
+    }
+    
+    func stopGeneratingSquares(){
+        generationTimer?.invalidate()
+
+        for square in squares {
+            square.stopMoving()
+        }
     }
     
 }

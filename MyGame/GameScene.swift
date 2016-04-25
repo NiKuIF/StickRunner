@@ -25,8 +25,6 @@ class GameScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         
-        //physicsWorld.gravity = CGVectorMake(0.0, -20)
-        
         // create MenuManager and setup First Start
         menu_manager = MenuManager(self_: self)
         menu_manager.setupFirstStart()
@@ -51,6 +49,9 @@ class GameScene: SKScene {
             
             // draw base line
             obstacle_handler.drawBaseLine()
+            
+            // start wall generation
+            obstacle_handler.startGeneratingWallsEvery(1)
             
             game_state = GameState.GAME_PLAY
         }

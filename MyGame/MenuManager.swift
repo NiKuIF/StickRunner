@@ -16,7 +16,7 @@ class MenuManager {
     var PauseContinueLabel = SKLabelNode(fontNamed: "Chalkduster")
     var BackToStartScreenLabel = SKLabelNode(fontNamed: "Chalkduster")
     
-    var main_scene: SKScene
+    private var main_scene: SKScene
     
     
     init(self_: SKScene) {
