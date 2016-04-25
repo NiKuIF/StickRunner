@@ -9,17 +9,12 @@
 import Foundation
 import SpriteKit
 
-
 class Hero: SKSpriteNode {
     
-    
-    let heroCategory: UInt32 = 0x1 << 0
-    let wallCategory: UInt32 = 0x1 << 1
-    
-    var TextureAtlas =  SKTextureAtlas()
-    var TextureArray = [SKTexture]()
-    
-    var main_scene: SKScene
+    // private members
+    private var TextureAtlas =  SKTextureAtlas()
+    private var TextureArray = [SKTexture]()
+    private var main_scene: SKScene    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -39,13 +34,6 @@ class Hero: SKSpriteNode {
         position = CGPoint(
             x: main_scene.size.width/3,
             y: main_scene.size.height/2 - main_scene.size.height/16)
-        
-        physicsBody = SKPhysicsBody(rectangleOfSize: size)
-        //physicsBody?.categoryBitMask = heroCategory
-        //physicsBody?.contactTestBitMask = wallCategory
-        physicsBody = SKPhysicsBody(circleOfRadius: self.size.height / 2.75)
-        physicsBody?.affectedByGravity = false
-        
     }
     
     func addToScene(){
@@ -67,33 +55,10 @@ class Hero: SKSpriteNode {
     }
     
     func jump(){
-       
-        // NSLog("height:\(size.height)")
-        // let cache_pos = position
-        
-        //let jumpup = SKAction.moveToY(position.y + 30, duration: 0.5)
-        //let jumpdown = SKAction.moveToY(position.y - 30, duration: 0.5)
-        
-        
-        
-        //physicsBody?.applyImpulse(CGVectorMake(0, 1))
-        
-        //physicsBody?.affectedByGravity = true
-        //physicsBody?.applyImpulse(CGVectorMake(0, 1), atPoint: position)
-        
-        
-        //let rotateBack = SKAction.rotateByAngle(CGFloat(M_PI) / 2, duration: 0.4)
-        //runAction(rotateBack)
-        
-        //runAction(jumpup)
-        //runAction(jumpdown)
-        
-        
-        physicsBody?.dynamic = true
-        physicsBody?.velocity = CGVectorMake(0, 0)
-        physicsBody?.applyImpulse(CGVectorMake(0, 20))
-        
-        
+        let jumpUpAction = SKAction.moveByX(0, y:80, duration:0.4)
+        let jumpDownAction = SKAction.moveByX(0, y:-80, duration:0.4)
+        let jumpSequence = SKAction.sequence([jumpUpAction, jumpDownAction])
+        self.runAction(jumpSequence)
     }
 }
 
