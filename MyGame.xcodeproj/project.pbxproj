@@ -19,6 +19,7 @@
 		2E69CF7D1CCCEE650058B069 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E69CF7B1CCCEE650058B069 /* LaunchScreen.storyboard */; };
 		2E69CF871CCCEF730058B069 /* WinImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 2E69CF861CCCEF730058B069 /* WinImages.atlas */; };
 		2EB430A31CCED3B7008C1605 /* ObstacleSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB430A21CCED3B7008C1605 /* ObstacleSquare.swift */; };
+		2EB430A51CCEDA1A008C1605 /* GameConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB430A41CCEDA1A008C1605 /* GameConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		2E69CF7E1CCCEE650058B069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E69CF861CCCEF730058B069 /* WinImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = WinImages.atlas; sourceTree = "<group>"; };
 		2EB430A21CCED3B7008C1605 /* ObstacleSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleSquare.swift; sourceTree = "<group>"; };
+		2EB430A41CCEDA1A008C1605 /* GameConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				2E5CE8561CCD4FD7004746C0 /* MenuManager */,
 				2E69CF861CCCEF730058B069 /* WinImages.atlas */,
 				2E69CF6E1CCCEE650058B069 /* AppDelegate.swift */,
+				2EB430A41CCEDA1A008C1605 /* GameConstants.swift */,
 				2E69CF701CCCEE650058B069 /* GameScene.sks */,
 				2E69CF721CCCEE650058B069 /* GameScene.swift */,
 				2E69CF741CCCEE650058B069 /* GameViewController.swift */,
@@ -188,6 +191,7 @@
 				2E5CE85B1CCD597B004746C0 /* Hero.swift in Sources */,
 				2E5CE8581CCD4FF4004746C0 /* MenuManager.swift in Sources */,
 				2E69CF731CCCEE650058B069 /* GameScene.swift in Sources */,
+				2EB430A51CCEDA1A008C1605 /* GameConstants.swift in Sources */,
 				2E69CF751CCCEE650058B069 /* GameViewController.swift in Sources */,
 				2E69CF6F1CCCEE650058B069 /* AppDelegate.swift in Sources */,
 			);

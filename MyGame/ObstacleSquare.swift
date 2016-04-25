@@ -22,8 +22,14 @@ class ObstacleSquare: SKSpriteNode {
         let size = CGSizeMake(SQUARE_SIDE, SQUARE_SIDE)
         super.init(texture: nil, color: SQUARE_COLOR, size: size)
         
-        // todo: add physics
+        loadPhysicsBodyWithSize(size)
         startMoving()
+    }
+    
+    func loadPhysicsBodyWithSize(size: CGSize) {
+        physicsBody = SKPhysicsBody(rectangleOfSize: size)
+        physicsBody?.categoryBitMask = wallCategory
+        physicsBody?.affectedByGravity = false
     }
     
     func startMoving() {

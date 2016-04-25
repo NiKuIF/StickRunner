@@ -32,8 +32,17 @@ class Hero: SKSpriteNode {
         super.init(texture: TextureArray[0], color: UIColor.clearColor(), size: size)
         
         position = CGPoint(
-            x: main_scene.size.width/3,
+            x: main_scene.size.width/3 - main_scene.size.width/16,
             y: main_scene.size.height/2 - main_scene.size.height/16)
+        
+        loadPhysicsBodyWithSize(size)
+    }
+    
+    func loadPhysicsBodyWithSize(size: CGSize) {
+        physicsBody = SKPhysicsBody(rectangleOfSize: size)
+        physicsBody?.categoryBitMask = heroCategory
+        physicsBody?.contactTestBitMask = wallCategory
+        physicsBody?.affectedByGravity = false
     }
     
     func addToScene(){
@@ -55,8 +64,8 @@ class Hero: SKSpriteNode {
     }
     
     func jump(){
-        let jumpUpAction = SKAction.moveByX(0, y:80, duration:0.4)
-        let jumpDownAction = SKAction.moveByX(0, y:-80, duration:0.4)
+        let jumpUpAction = SKAction.moveByX(0, y:100, duration:0.5)
+        let jumpDownAction = SKAction.moveByX(0, y:-100, duration:0.5)
         let jumpSequence = SKAction.sequence([jumpUpAction, jumpDownAction])
         self.runAction(jumpSequence)
     }

@@ -51,13 +51,22 @@ class MenuManager {
     func gameBackToMenu(){
         setBackGroundColor(UIColor.blackColor())
         MainLabel.text = "StickRunner"
+        MainLabel.fontColor = UIColor.whiteColor()
         PauseContinueLabel.text = ""
         BackToStartScreenLabel.text = ""
+    }
+    
+    func gameOver(){
+        MainLabel.fontColor = UIColor.blackColor()
+        MainLabel.text = "Game Over"
+        BackToStartScreenLabel.text = "Back"
+        PauseContinueLabel.text = ""
     }
     
     private func setupMainLabel(){
         MainLabel.text = "StickRunner"
         MainLabel.fontSize = 50
+        MainLabel.fontColor = UIColor.whiteColor()
         MainLabel.position = CGPoint(x:CGRectGetMidX(main_scene.frame), y:CGRectGetMidY(main_scene.frame))
         main_scene.addChild(MainLabel)
     }

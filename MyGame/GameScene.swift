@@ -15,7 +15,11 @@ enum GameState {
     case GAME_PAUSE
 }
 
-class GameScene: SKScene {
+// SKPhysicsContactDelegate 
+// for physics action, like collision detection
+
+
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var menu_manager: MenuManager!
     var hero: Hero!
@@ -24,6 +28,9 @@ class GameScene: SKScene {
     var game_state = GameState.START_SCREEN
     
     override func didMoveToView(view: SKView) {
+        
+        // add physics world
+        physicsWorld.contactDelegate = self
         
         // create MenuManager and setup First Start
         menu_manager = MenuManager(self_: self)
@@ -51,7 +58,7 @@ class GameScene: SKScene {
             obstacle_handler.drawBaseLine()
             
             // start wall generation
-            obstacle_handler.startGeneratingWallsEvery(1)
+            obstacle_handler.startGeneratingWallsEvery(2)
             
             game_state = GameState.GAME_PLAY
         }
@@ -94,9 +101,34 @@ class GameScene: SKScene {
                 }
             }
         }
+        else if( game_state == GameState.GAME_DEAD){
+            if let touch = touches.first {
+                let touch_pos_back :CGPoint = touch.locationInNode(menu_manager.BackToStartScreenLabel)
+                if(touch_pos_back.x < 50 && touch_pos_back.x > -150 && touch_pos_back.y > -4)
+                {
+                    menu_manager.gameBackToMenu()
+                    hero.stopAndRemove()
+                    game_state = GameState.START_SCREEN
+                }
+            }
+        }
     }
    
     override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
+        
+        // update to count points
+      
     }
+    
+    // SKPhysicsContactDelegate - fires when hero runs against square
+    func didBeginContact(contact: SKPhysicsContact) {
+        // game over
+        
+        hero.stopRun()
+        obstacle_handler.stopGeneratingSquares()
+        menu_manager.gameOver()
+        
+        game_state = GameState.GAME_DEAD
+    }
+    
 }
