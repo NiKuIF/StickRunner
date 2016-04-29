@@ -16,6 +16,9 @@ class Hero: SKSpriteNode {
     private var TextureArray = [SKTexture]()
     private var main_scene: SKScene    
     
+    // prevent double jumping
+    private var jumping = false;
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -64,11 +67,18 @@ class Hero: SKSpriteNode {
     }
     
     func jump(){
+        
+        if(jumping){
+            return; }
+        
         let jumpUpAction = SKAction.moveByX(0, y:100, duration:0.5)
         let jumpDownAction = SKAction.moveByX(0, y:-100, duration:0.5)
         let jumpSequence = SKAction.sequence([jumpUpAction, jumpDownAction])
-        self.runAction(jumpSequence)
+        
+        jumping = true;
+        self.runAction(jumpSequence, completion: { self.jumping = false; })
     }
+    
 }
 
 
