@@ -35,12 +35,15 @@ class ObstacleHandler {
     }
     
     func startGeneratingWallsEvery(seconds: NSTimeInterval) {
+        
+        // standard false, because we only start the timer once
+        fireing = false
+        
         generationTimer = NSTimer.scheduledTimerWithTimeInterval(seconds,
                                         target: self,
                                         selector: #selector(ObstacleHandler.generateSquare),
                                         userInfo: nil,
                                         repeats: true)
-        fireing = true
     }
     
     // @objc prefix for Selector usage

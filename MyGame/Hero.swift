@@ -16,8 +16,8 @@ class Hero: SKSpriteNode {
     private var TextureArray = [SKTexture]()
     private var main_scene: SKScene    
     
-    // prevent double jumping
-    private var jumping = false;
+    // prevent double jumping, not private so we can reset it by death
+    var jumping = false;
     
     // save hero start position, needed for pause and continue
     private var start_pos = CGPoint()

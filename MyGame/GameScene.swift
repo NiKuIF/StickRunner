@@ -39,6 +39,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // create Hero
         hero = Hero(self_: self)
+        
+        obstacle_handler.startGeneratingWallsEvery(2)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -47,10 +49,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             startGame()
         }
         else if(game_state == GameState.GAME_PLAY){
-            gameIsRunning(touches)
-        }
-        else if(game_state == GameState.GAME_PAUSE){
-            conOrStopGame(touches)
+            hero.jump()
         }
         else if( game_state == GameState.GAME_DEAD){
             restartGame(touches)
@@ -68,6 +67,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // game over
         
         // add hero fall animation
+        
+        hero.jumping = false;
         hero.stopRun()
         obstacle_handler.stopGeneratingSquares()
         menu_manager.gameOver()
@@ -91,52 +92,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         obstacle_handler.drawBaseLine()
         
         // start wall generation
-        obstacle_handler.startGeneratingWallsEvery(2)
+        obstacle_handler.continueSquareGeneration()
         
         game_state = GameState.GAME_PLAY
-    }
-    
-    func gameIsRunning(touches: Set<UITouch>){
-        
-        // Disable Pause-Continue Label
-        
-       // if let touch = touches.first {
-            /*let touch_pos :CGPoint = touch.locationInNode(menu_manager.PauseContinueLabel)
-            if(touch_pos.x > -50 && touch_pos.y > -4)
-            {
-                hero.stopRun()
-                menu_manager.gamePause()
-                obstacle_handler.stopGeneratingSquares()
-                obstacle_handler.stopMoveSquare()
-                game_state = GameState.GAME_PAUSE
-            }
-            else
-            {*/
-                // jump Action
-                hero.jump()
-            //}
-        //}
-    }
-    
-    func conOrStopGame(touches: Set<UITouch>){
-        if let touch = touches.first {
-            let touch_pos_con :CGPoint = touch.locationInNode(menu_manager.PauseContinueLabel)
-            if(touch_pos_con.x > -90 && touch_pos_con.y > -4)
-            {   // continue button pressed
-                hero.continueRun()
-                menu_manager.gameContinue()
-                obstacle_handler.startMoveSquare()
-                obstacle_handler.continueSquareGeneration()
-                game_state = GameState.GAME_PLAY
-                return;
-            }
-            
-            let touch_pos_back :CGPoint = touch.locationInNode(menu_manager.BackToStartScreenLabel)
-            if(touch_pos_back.x < 50 && touch_pos_back.x > -150 && touch_pos_back.y > -4)
-            {   // back button pressed
-                backToStartScreen()
-            }
-        }
     }
     
     func restartGame(touches: Set<UITouch>){
@@ -144,16 +102,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let touch_pos_back :CGPoint = touch.locationInNode(menu_manager.BackToStartScreenLabel)
             if(touch_pos_back.x < 50 && touch_pos_back.x > -150 && touch_pos_back.y > -4)
             {
-                backToStartScreen()
+                menu_manager.gameBackToMenu()
+                hero.stopAndRemove()
+                obstacle_handler.removeAllSquares()
+                game_state = GameState.START_SCREEN
             }
         }
     }
-    
-    func backToStartScreen(){
-        menu_manager.gameBackToMenu()
-        hero.stopAndRemove()
-        obstacle_handler.removeAllSquares()
-        game_state = GameState.START_SCREEN
-    }
-    
 }
