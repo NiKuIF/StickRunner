@@ -43,6 +43,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         obstacle_handler.startGeneratingWallsEvery(2)
         
         menu_manager.addTestLabel()
+        
+        menu_manager.setTestLabelText("points: 0")
+        
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -58,15 +61,37 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
    
+    var point_counter = 0
+    
     override func update(currentTime: CFTimeInterval) {
         
         // update to count points
       
+        if obstacle_handler.squares_tracker.count > 0 {
+            
+            let wall = obstacle_handler.squares_tracker[0] as ObstacleSquare
+            
+            let wallLocation = wall.convertPoint(wall.position, toNode: self)
+        
+            if wallLocation.x < hero.position.x {
+                obstacle_handler.squares_tracker.removeAtIndex(0)
+                
+                /*let pointsLabel = childNodeWithName("pointsLabel") as! MLPointsLabel
+                pointsLabel.increment()
+                */
+                
+                point_counter += 1
+                
+                menu_manager.setTestLabelText("points: \(point_counter)")
+                
+            }
+        }
+        
         
         // for testing print squares, memory leak
         // obstacle_handler.squares.count
         
-        menu_manager.setTestLabelText("square: \(obstacle_handler.squares.count)")
+        //menu_manager.setTestLabelText("square: \(obstacle_handler.squares.count)")
     }
     
     // SKPhysicsContactDelegate - fires when hero runs against square
@@ -83,11 +108,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         game_state = GameState.GAME_DEAD
     }
     
-    /**
-     *  Helper Functions
-     */
-    
     func startGame(){
+        
+        point_counter = 0
+        menu_manager.setTestLabelText("points: \(0)")
+        
         // clear and set labels
         menu_manager.gameStart()
         

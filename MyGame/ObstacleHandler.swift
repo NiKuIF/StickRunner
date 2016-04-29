@@ -14,6 +14,7 @@ class ObstacleHandler {
     private var main_scene: SKScene
     private var generationTimer: NSTimer?
     var squares = [ObstacleSquare]()
+    var squares_tracker = [ObstacleSquare]()
     
     private var baseline_thickness: CGFloat
     
@@ -62,6 +63,7 @@ class ObstacleHandler {
                             square.size.height/2
         square.addSmallSquare()
         squares.append(square)
+        squares_tracker.append(square)
         main_scene.addChild(square)
 
         /*
@@ -73,6 +75,7 @@ class ObstacleHandler {
     
     func deleteSquares(){
         squares.removeAll()
+        squares_tracker.removeAll()
     }
     
     func startMoveSquare(){
