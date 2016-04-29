@@ -64,4 +64,10 @@ class ObstacleHandler {
         }
     }
     
+    func removeAllSquares(){
+        for square in squares{
+            square.removeFromParent()
+        }
+    }
+    
 }

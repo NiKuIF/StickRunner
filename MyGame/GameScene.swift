@@ -141,6 +141,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             {
                 menu_manager.gameBackToMenu()
                 hero.stopAndRemove()
+                obstacle_handler.removeAllSquares()
                 game_state = GameState.START_SCREEN
             }
         }
