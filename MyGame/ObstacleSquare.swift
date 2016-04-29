@@ -18,18 +18,29 @@ class ObstacleSquare: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init() {
-        let size = CGSizeMake(SQUARE_SIDE, SQUARE_SIDE)
-        super.init(texture: nil, color: SQUARE_COLOR, size: size)
+    init(){
+        let size_ = CGSizeMake(SQUARE_SIDE, SQUARE_SIDE)
+        super.init(texture: nil, color: SQUARE_COLOR, size: size_)
         
         loadPhysicsBodyWithSize(size)
         startMoving()
+    }
+    
+    init(child: Bool) {
+        let size_ = CGSizeMake(SQUARE_SIDE - 7, SQUARE_SIDE - 7)
+        super.init(texture: nil, color: UIColor.whiteColor(), size: size_)
+        // do not move the childSquares -> relativily
     }
     
     func loadPhysicsBodyWithSize(size: CGSize) {
         physicsBody = SKPhysicsBody(rectangleOfSize: size)
         physicsBody?.categoryBitMask = wallCategory
         physicsBody?.affectedByGravity = false
+    }
+    
+    func addSmallSquare() {
+        let small_square = ObstacleSquare(child: true);
+        self.addChild(small_square)
     }
     
     func startMoving() {

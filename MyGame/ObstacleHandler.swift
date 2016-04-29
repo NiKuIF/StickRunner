@@ -15,13 +15,16 @@ class ObstacleHandler {
     private var generationTimer: NSTimer?
     var squares = [ObstacleSquare]()
     
+    private var baseline_thickness: CGFloat
+    
     init(self_: SKScene){
         main_scene = self_;
+        baseline_thickness = 4;
     }
     
     func drawBaseLine(){
         let base_line = SKSpriteNode(color: UIColor.blackColor(),
-                                     size: CGSizeMake(main_scene.size.width, 4))
+                                     size: CGSizeMake(main_scene.size.width, baseline_thickness))
         base_line.position = CGPointMake(CGRectGetMidX(main_scene.frame),
                                          CGRectGetMidY(main_scene.frame) -
                                             CGRectGetMidY(main_scene.frame)/3)
@@ -37,11 +40,14 @@ class ObstacleHandler {
         
         NSLog("generate Square")
         
-        let wall = ObstacleSquare()
-        wall.position.x = main_scene.size.width
-        wall.position.y = main_scene.size.height/2 - main_scene.size.height/8
-        squares.append(wall)
-        main_scene.addChild(wall)
+        let square = ObstacleSquare()
+        square.position.x = main_scene.size.width
+        square.position.y = main_scene.size.height/2 -
+                            main_scene.size.height/8 -
+                            square.size.height/2
+        square.addSmallSquare()
+        squares.append(square)
+        main_scene.addChild(square)
 
         /*
          x: main_scene.size.width/3,

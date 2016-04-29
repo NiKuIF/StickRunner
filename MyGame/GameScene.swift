@@ -17,8 +17,6 @@ enum GameState {
 
 // SKPhysicsContactDelegate 
 // for physics action, like collision detection
-
-
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var menu_manager: MenuManager!
@@ -45,72 +43,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
        
-        if(game_state == GameState.START_SCREEN)
-        {
-            // clear and set labels
-            menu_manager.gameStart()
-            
-            // show hero
-            hero.addToScene()
-            hero.startRun()
-            
-            // draw base line
-            obstacle_handler.drawBaseLine()
-            
-            // start wall generation
-            obstacle_handler.startGeneratingWallsEvery(2)
-            
-            game_state = GameState.GAME_PLAY
+        if(game_state == GameState.START_SCREEN){
+            startGame()
         }
-        else if(game_state == GameState.GAME_PLAY)
-        {
-            if let touch = touches.first {
-                let touch_pos :CGPoint = touch.locationInNode(menu_manager.PauseContinueLabel)
-                if(touch_pos.x > -50 && touch_pos.y > -4)
-                {
-                    hero.stopRun()
-                    menu_manager.gamePause()
-                    game_state = GameState.GAME_PAUSE
-                }
-                else
-                {
-                    // jump Action
-                    hero.jump()
-                }
-            }
-            
+        else if(game_state == GameState.GAME_PLAY){
+            gameIsRunning(touches)
         }
-        else if(game_state == GameState.GAME_PAUSE)
-        {
-            if let touch = touches.first {
-                let touch_pos_con :CGPoint = touch.locationInNode(menu_manager.PauseContinueLabel)
-                if(touch_pos_con.x > -90 && touch_pos_con.y > -4)
-                {
-                    hero.startRun()
-                    menu_manager.gameContinue()
-                    game_state = GameState.GAME_PLAY
-                    return;
-                }
-                
-                let touch_pos_back :CGPoint = touch.locationInNode(menu_manager.BackToStartScreenLabel)
-                if(touch_pos_back.x < 50 && touch_pos_back.x > -150 && touch_pos_back.y > -4)
-                {
-                    menu_manager.gameBackToMenu()
-                    hero.stopAndRemove()
-                    game_state = GameState.START_SCREEN
-                }
-            }
+        else if(game_state == GameState.GAME_PAUSE){
+            conOrStopGame(touches)
         }
         else if( game_state == GameState.GAME_DEAD){
-            if let touch = touches.first {
-                let touch_pos_back :CGPoint = touch.locationInNode(menu_manager.BackToStartScreenLabel)
-                if(touch_pos_back.x < 50 && touch_pos_back.x > -150 && touch_pos_back.y > -4)
-                {
-                    menu_manager.gameBackToMenu()
-                    hero.stopAndRemove()
-                    game_state = GameState.START_SCREEN
-                }
-            }
+            restartGame(touches)
         }
     }
    
@@ -124,11 +67,83 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func didBeginContact(contact: SKPhysicsContact) {
         // game over
         
+        // add hero fall animation
         hero.stopRun()
         obstacle_handler.stopGeneratingSquares()
         menu_manager.gameOver()
         
         game_state = GameState.GAME_DEAD
+    }
+    
+    /**
+     *  Helper Functions
+     */
+    
+    func startGame(){
+        // clear and set labels
+        menu_manager.gameStart()
+        
+        // show hero
+        hero.addToScene()
+        hero.startRun()
+        
+        // draw base line
+        obstacle_handler.drawBaseLine()
+        
+        // start wall generation
+        obstacle_handler.startGeneratingWallsEvery(2)
+        
+        game_state = GameState.GAME_PLAY
+    }
+    
+    func gameIsRunning(touches: Set<UITouch>){
+        if let touch = touches.first {
+            let touch_pos :CGPoint = touch.locationInNode(menu_manager.PauseContinueLabel)
+            if(touch_pos.x > -50 && touch_pos.y > -4)
+            {
+                hero.stopRun()
+                menu_manager.gamePause()
+                game_state = GameState.GAME_PAUSE
+            }
+            else
+            {
+                // jump Action
+                hero.jump()
+            }
+        }
+    }
+    
+    func conOrStopGame(touches: Set<UITouch>){
+        if let touch = touches.first {
+            let touch_pos_con :CGPoint = touch.locationInNode(menu_manager.PauseContinueLabel)
+            if(touch_pos_con.x > -90 && touch_pos_con.y > -4)
+            {
+                hero.startRun()
+                menu_manager.gameContinue()
+                game_state = GameState.GAME_PLAY
+                return;
+            }
+            
+            let touch_pos_back :CGPoint = touch.locationInNode(menu_manager.BackToStartScreenLabel)
+            if(touch_pos_back.x < 50 && touch_pos_back.x > -150 && touch_pos_back.y > -4)
+            {
+                menu_manager.gameBackToMenu()
+                hero.stopAndRemove()
+                game_state = GameState.START_SCREEN
+            }
+        }
+    }
+    
+    func restartGame(touches: Set<UITouch>){
+        if let touch = touches.first {
+            let touch_pos_back :CGPoint = touch.locationInNode(menu_manager.BackToStartScreenLabel)
+            if(touch_pos_back.x < 50 && touch_pos_back.x > -150 && touch_pos_back.y > -4)
+            {
+                menu_manager.gameBackToMenu()
+                hero.stopAndRemove()
+                game_state = GameState.START_SCREEN
+            }
+        }
     }
     
 }

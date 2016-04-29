@@ -42,7 +42,8 @@ class Hero: SKSpriteNode {
     }
     
     func loadPhysicsBodyWithSize(size: CGSize) {
-        physicsBody = SKPhysicsBody(rectangleOfSize: size)
+        physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(size.width - 10, size.height - 20))
+        //rectangleOfSize: size)
         physicsBody?.categoryBitMask = heroCategory
         physicsBody?.contactTestBitMask = wallCategory
         physicsBody?.affectedByGravity = false
