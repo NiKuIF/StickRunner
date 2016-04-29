@@ -17,6 +17,9 @@ class ObstacleHandler {
     
     private var baseline_thickness: CGFloat
     
+    private var fireing = false;
+    
+    
     init(self_: SKScene){
         main_scene = self_;
         baseline_thickness = 4;
@@ -32,13 +35,22 @@ class ObstacleHandler {
     }
     
     func startGeneratingWallsEvery(seconds: NSTimeInterval) {
-        generationTimer = NSTimer.scheduledTimerWithTimeInterval(seconds, target: self, selector: #selector(ObstacleHandler.generateSquare), userInfo: nil, repeats: true)
+        generationTimer = NSTimer.scheduledTimerWithTimeInterval(seconds,
+                                        target: self,
+                                        selector: #selector(ObstacleHandler.generateSquare),
+                                        userInfo: nil,
+                                        repeats: true)
+        fireing = true
     }
     
     // @objc prefix for Selector usage
     @objc func generateSquare() {
         
-        NSLog("generate Square")
+        if(!fireing){
+            return;
+        }
+        
+        //NSLog("generate Square")
         
         let square = ObstacleSquare()
         square.position.x = main_scene.size.width
@@ -56,8 +68,24 @@ class ObstacleHandler {
         
     }
     
+    func startMoveSquare(){
+        for square in squares {
+            square.startMoving()
+        }
+    }
+    
+    func continueSquareGeneration(){
+        fireing = true;
+    }
+    
+    func stopMoveSquare(){
+        for square in squares {
+            square.stopMoving()
+        }
+    }
+    
     func stopGeneratingSquares(){
-        generationTimer?.invalidate()
+        fireing = false;
 
         for square in squares {
             square.stopMoving()
@@ -70,4 +98,4 @@ class ObstacleHandler {
         }
     }
     
-}
+ }

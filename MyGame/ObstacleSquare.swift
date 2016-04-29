@@ -27,7 +27,7 @@ class ObstacleSquare: SKSpriteNode {
     }
     
     init(child: Bool) {
-        let size_ = CGSizeMake(SQUARE_SIDE - 7, SQUARE_SIDE - 7)
+        let size_ = CGSizeMake(SQUARE_SIDE - 8, SQUARE_SIDE - 8)
         super.init(texture: nil, color: UIColor.whiteColor(), size: size_)
         // do not move the childSquares -> relativily
     }

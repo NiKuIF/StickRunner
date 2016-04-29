@@ -28,7 +28,7 @@ class MenuManager {
     
     func setupFirstStart(){
         setupMainLabel()
-        setupPCLabel()
+        // setupPCLabel()
         setupBTSLabel()
     }
     

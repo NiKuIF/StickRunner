@@ -97,39 +97,44 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func gameIsRunning(touches: Set<UITouch>){
-        if let touch = touches.first {
-            let touch_pos :CGPoint = touch.locationInNode(menu_manager.PauseContinueLabel)
+        
+        // Disable Pause-Continue Label
+        
+       // if let touch = touches.first {
+            /*let touch_pos :CGPoint = touch.locationInNode(menu_manager.PauseContinueLabel)
             if(touch_pos.x > -50 && touch_pos.y > -4)
             {
                 hero.stopRun()
                 menu_manager.gamePause()
+                obstacle_handler.stopGeneratingSquares()
+                obstacle_handler.stopMoveSquare()
                 game_state = GameState.GAME_PAUSE
             }
             else
-            {
+            {*/
                 // jump Action
                 hero.jump()
-            }
-        }
+            //}
+        //}
     }
     
     func conOrStopGame(touches: Set<UITouch>){
         if let touch = touches.first {
             let touch_pos_con :CGPoint = touch.locationInNode(menu_manager.PauseContinueLabel)
             if(touch_pos_con.x > -90 && touch_pos_con.y > -4)
-            {
-                hero.startRun()
+            {   // continue button pressed
+                hero.continueRun()
                 menu_manager.gameContinue()
+                obstacle_handler.startMoveSquare()
+                obstacle_handler.continueSquareGeneration()
                 game_state = GameState.GAME_PLAY
                 return;
             }
             
             let touch_pos_back :CGPoint = touch.locationInNode(menu_manager.BackToStartScreenLabel)
             if(touch_pos_back.x < 50 && touch_pos_back.x > -150 && touch_pos_back.y > -4)
-            {
-                menu_manager.gameBackToMenu()
-                hero.stopAndRemove()
-                game_state = GameState.START_SCREEN
+            {   // back button pressed
+                backToStartScreen()
             }
         }
     }
@@ -139,12 +144,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let touch_pos_back :CGPoint = touch.locationInNode(menu_manager.BackToStartScreenLabel)
             if(touch_pos_back.x < 50 && touch_pos_back.x > -150 && touch_pos_back.y > -4)
             {
-                menu_manager.gameBackToMenu()
-                hero.stopAndRemove()
-                obstacle_handler.removeAllSquares()
-                game_state = GameState.START_SCREEN
+                backToStartScreen()
             }
         }
+    }
+    
+    func backToStartScreen(){
+        menu_manager.gameBackToMenu()
+        hero.stopAndRemove()
+        obstacle_handler.removeAllSquares()
+        game_state = GameState.START_SCREEN
     }
     
 }
