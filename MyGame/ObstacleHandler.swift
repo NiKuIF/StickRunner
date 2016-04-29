@@ -71,6 +71,10 @@ class ObstacleHandler {
         
     }
     
+    func deleteSquares(){
+        squares.removeAll()
+    }
+    
     func startMoveSquare(){
         for square in squares {
             square.startMoving()

@@ -14,6 +14,7 @@ class MenuManager {
     
     var MainLabel = SKLabelNode(fontNamed: "Chalkduster")
     var BackToStartScreenLabel = SKLabelNode(fontNamed: "Chalkduster")
+    var TestLabel = SKLabelNode(fontNamed: "Chalkduster")
     
     private var main_scene: SKScene
     
@@ -47,6 +48,19 @@ class MenuManager {
         MainLabel.fontColor = UIColor.blackColor()
         MainLabel.text = "Game Over"
         BackToStartScreenLabel.text = "Back"
+    }
+    
+    func setTestLabelText(content: String){
+        TestLabel.text = content;
+    }
+    
+    func addTestLabel(){
+        TestLabel.fontSize = 30
+        TestLabel.fontColor = UIColor.redColor()
+        TestLabel.position = CGPoint(
+            x:(CGRectGetMidX(main_scene.frame) + CGRectGetMidX(main_scene.frame)/2),
+            y:(CGRectGetMidY(main_scene.frame) + CGRectGetMidY(main_scene.frame)/2))
+        main_scene.addChild(TestLabel)
     }
     
     private func setupMainLabel(){

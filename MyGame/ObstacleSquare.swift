@@ -32,6 +32,13 @@ class ObstacleSquare: SKSpriteNode {
         // do not move the childSquares -> relativily
     }
     
+    deinit {
+        // NSLog("deinit called!!!\n")
+        self.removeAllChildren()
+        self.removeFromParent()
+        self.removeAllActions()
+    }
+    
     func loadPhysicsBodyWithSize(size: CGSize) {
         physicsBody = SKPhysicsBody(rectangleOfSize: size)
         physicsBody?.categoryBitMask = wallCategory

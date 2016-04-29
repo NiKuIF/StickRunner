@@ -41,6 +41,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         hero = Hero(self_: self)
         
         obstacle_handler.startGeneratingWallsEvery(2)
+        
+        menu_manager.addTestLabel()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -60,6 +62,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // update to count points
       
+        
+        // for testing print squares, memory leak
+        // obstacle_handler.squares.count
+        
+        menu_manager.setTestLabelText("square: \(obstacle_handler.squares.count)")
     }
     
     // SKPhysicsContactDelegate - fires when hero runs against square
@@ -105,6 +112,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 menu_manager.gameBackToMenu()
                 hero.stopAndRemove()
                 obstacle_handler.removeAllSquares()
+                obstacle_handler.deleteSquares()
                 game_state = GameState.START_SCREEN
             }
         }
