@@ -15,6 +15,7 @@ class MenuManager {
     var lb_main = SKLabelNode(fontNamed: "Chalkduster")
     var lb_back = SKLabelNode(fontNamed: "Chalkduster")
     var lb_points = SKLabelNode(fontNamed: "Chalkduster")
+    var lb_highscore = SKLabelNode(fontNamed: "Chalkduster")
     
     var lb_test = SKLabelNode(fontNamed: "Chalkduster")
     
@@ -28,6 +29,7 @@ class MenuManager {
     
     func setupFirstStart(){
         setupMainLabel()
+        setupHighScoreLabel()
         setupBackLabel()
         setupPointsLabel()
     }
@@ -35,6 +37,7 @@ class MenuManager {
     func gameStart(){
         lb_main.text = ""
         lb_points.text = "Points: 0"
+        lb_highscore.text = ""
         setBackGroundColor(UIColor.whiteColor())
     }
     
@@ -52,6 +55,10 @@ class MenuManager {
         lb_back.text = "Back"
     }
     
+    func setHighscoreLabel(highscore: NSInteger){
+        lb_highscore.text = "Highscore: \(highscore)"
+    }
+    
     func updatePointsLabel(points: NSInteger){
         lb_points.text = "Points: \(points)"
     }
@@ -61,7 +68,7 @@ class MenuManager {
     }
     
     func addTestLabel(){
-        lb_test.fontSize = 30
+        lb_test.fontSize = TEST_FONTSIZE
         lb_test.fontColor = UIColor.redColor()
         lb_test.position = CGPoint(
             x:(CGRectGetMidX(main_scene.frame) + CGRectGetMidX(main_scene.frame)/2),
@@ -71,7 +78,7 @@ class MenuManager {
     
     private func setupMainLabel(){
         lb_main.text = "StickRunner"
-        lb_main.fontSize = 70
+        lb_main.fontSize = BIG_FONTSIZE
         lb_main.fontColor = UIColor.whiteColor()
         lb_main.position = CGPoint(
             x:CGRectGetMidX(main_scene.frame),
@@ -81,7 +88,7 @@ class MenuManager {
     
     private func setupBackLabel(){
         lb_back.text = ""
-        lb_back.fontSize = 50
+        lb_back.fontSize = MIDDLE_FONTSIZE
         lb_back.fontColor = UIColor.blackColor()
         lb_back.position = CGPoint(
             x:(CGRectGetMidX(main_scene.frame) - CGRectGetMidX(main_scene.frame)/2),
@@ -91,12 +98,22 @@ class MenuManager {
     
     private func setupPointsLabel(){
         lb_points.text = ""
-        lb_points.fontSize = 40
+        lb_points.fontSize = SMALL_FONTSIZE
         lb_points.fontColor = UIColor.blackColor()
         lb_points.position = CGPoint(
             x:(CGRectGetMidX(main_scene.frame) + CGRectGetMidX(main_scene.frame)/2),
             y:(CGRectGetMidY(main_scene.frame) + CGRectGetMidY(main_scene.frame)/2))
         main_scene.addChild(lb_points)
+    }
+    
+    private func setupHighScoreLabel(){
+        lb_highscore.text = ""
+        lb_highscore.fontSize = SMALL_FONTSIZE
+        lb_highscore.fontColor = UIColor.whiteColor()
+        lb_highscore.position = CGPoint(
+            x:(CGRectGetMidX(main_scene.frame) - CGRectGetMidX(main_scene.frame)/2),
+            y:(CGRectGetMidY(main_scene.frame) + CGRectGetMidY(main_scene.frame)/2))
+        main_scene.addChild(lb_highscore)
     }
     
     private func setBackGroundColor(color: UIColor){

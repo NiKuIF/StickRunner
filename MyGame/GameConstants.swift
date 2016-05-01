@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-// Configuration
-// let kMLGroundHeight: CGFloat = 20.0
-
-// Initial Variables
-// let kDefaultXToMovePerSecond: CGFloat = 320.0
+// Font Sizes
+let BIG_FONTSIZE: CGFloat = 70.0
+let MIDDLE_FONTSIZE: CGFloat = 50.0
+let SMALL_FONTSIZE: CGFloat = 40.0
+let TEST_FONTSIZE: CGFloat = 30.0
 
 // Collision Detection
-let heroCategory: UInt32 = 0x1 << 0
-let wallCategory: UInt32 = 0x1 << 1
+let HERO_CATEGORY: UInt32 = 0x1 << 0
+let SQUARE_CATEGORY: UInt32 = 0x1 << 1

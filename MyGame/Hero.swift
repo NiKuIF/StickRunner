@@ -50,8 +50,8 @@ class Hero: SKSpriteNode {
     func loadPhysicsBodyWithSize(size: CGSize) {
         // make physicsBody a bit smaller than the Image
         physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(size.width - 10, size.height - 20))
-        physicsBody?.categoryBitMask = heroCategory
-        physicsBody?.contactTestBitMask = wallCategory
+        physicsBody?.categoryBitMask = HERO_CATEGORY
+        physicsBody?.contactTestBitMask = SQUARE_CATEGORY
         physicsBody?.affectedByGravity = false
     }
     

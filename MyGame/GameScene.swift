@@ -21,10 +21,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var menu_manager: MenuManager!
     var hero: Hero!
     var obstacle_handler: ObstacleHandler!
- 
     
     var point_counter = 0
     var game_state = GameState.START_SCREEN
+    
+    var highscore = 0
     
     override func didMoveToView(view: SKView) {
         
@@ -34,6 +35,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // create MenuManager and setup First Start
         menu_manager = MenuManager(scene: self)
         menu_manager.setupFirstStart()
+        
+        // load highscore
+        highscore = HighscoreSave.getHighscore()
+        menu_manager.setHighscoreLabel(highscore)
         
         // create ObstacleHandler
         obstacle_handler = ObstacleHandler(scene: self, seconds: 2)
@@ -84,14 +89,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         menu_manager.gameOver()
         
         game_state = GameState.GAME_DEAD
+        
+        // check for new Highscore, if then save
+        if(point_counter > highscore){
+            highscore = point_counter
+            HighscoreSave.saveHighscore(highscore)
+        }
     }
     
     func startGame(){
         
-        point_counter = 0
-        menu_manager.setTestLabelText("points: \(0)")
-        
         // clear and set labels
+        point_counter = 0
         menu_manager.gameStart()
         
         // show hero
@@ -112,6 +121,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                touch_pos_back.y > -4)
             {
                 menu_manager.gameBackToMenu()
+                menu_manager.setHighscoreLabel(highscore)
                 hero.removeFromScene()
                 obstacle_handler.deleteAllSquares()
                 game_state = GameState.START_SCREEN

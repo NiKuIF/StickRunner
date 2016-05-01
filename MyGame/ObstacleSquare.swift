@@ -41,7 +41,7 @@ class ObstacleSquare: SKSpriteNode {
     
     func loadPhysicsBodyWithSize(size: CGSize) {
         physicsBody = SKPhysicsBody(rectangleOfSize: size)
-        physicsBody?.categoryBitMask = wallCategory
+        physicsBody?.categoryBitMask = SQUARE_CATEGORY
         physicsBody?.affectedByGravity = false
     }
     
