@@ -22,6 +22,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var hero: Hero!
     var obstacle_handler: ObstacleHandler!
  
+    
+    var point_counter = 0
     var game_state = GameState.START_SCREEN
     
     override func didMoveToView(view: SKView) {
@@ -38,10 +40,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // create Hero
         hero = Hero(scene: self)
-        
-        // only for testing purposes
-        menu_manager.addTestLabel()
-        menu_manager.setTestLabelText("points: 0")
     }
     
     // fired every screen touch
@@ -58,37 +56,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
    
-    var point_counter = 0
-    
     override func update(currentTime: CFTimeInterval) {
         
         // update to count points
-      
         if obstacle_handler.squares_tracker.count > 0 {
             
-            let wall = obstacle_handler.squares_tracker[0] as ObstacleSquare
+            let square = obstacle_handler.squares_tracker[0] as ObstacleSquare
+            let square_pos = square.convertPoint(square.position, toNode: self)
             
-            let wallLocation = wall.convertPoint(wall.position, toNode: self)
-        
-            if wallLocation.x < hero.position.x {
+            if square_pos.x < hero.position.x + 10 {
                 obstacle_handler.squares_tracker.removeAtIndex(0)
-                
-                /*let pointsLabel = childNodeWithName("pointsLabel") as! MLPointsLabel
-                pointsLabel.increment()
-                */
-                
                 point_counter += 1
-                
-                menu_manager.setTestLabelText("points: \(point_counter)")
-                
+                menu_manager.updatePointsLabel(point_counter)
             }
         }
-        
-        
-        // for testing print squares, memory leak
-        // obstacle_handler.squares.count
-        
-        //menu_manager.setTestLabelText("square: \(obstacle_handler.squares.count)")
     }
     
     // SKPhysicsContactDelegate - fires when hero runs against square

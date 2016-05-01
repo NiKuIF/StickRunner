@@ -29,10 +29,12 @@ class MenuManager {
     func setupFirstStart(){
         setupMainLabel()
         setupBackLabel()
+        setupPointsLabel()
     }
     
     func gameStart(){
         lb_main.text = ""
+        lb_points.text = "Points: 0"
         setBackGroundColor(UIColor.whiteColor())
     }
     
@@ -41,12 +43,17 @@ class MenuManager {
         lb_main.text = "StickRunner"
         lb_main.fontColor = UIColor.whiteColor()
         lb_back.text = ""
+        lb_points.text = ""
     }
     
     func gameOver(){
         lb_main.fontColor = UIColor.blackColor()
         lb_main.text = "Game Over"
         lb_back.text = "Back"
+    }
+    
+    func updatePointsLabel(points: NSInteger){
+        lb_points.text = "Points: \(points)"
     }
     
     func setTestLabelText(content: String){
@@ -80,6 +87,16 @@ class MenuManager {
             x:(CGRectGetMidX(main_scene.frame) - CGRectGetMidX(main_scene.frame)/2),
             y:(CGRectGetMidY(main_scene.frame) + CGRectGetMidY(main_scene.frame)/2))
         main_scene.addChild(lb_back)
+    }
+    
+    private func setupPointsLabel(){
+        lb_points.text = ""
+        lb_points.fontSize = 40
+        lb_points.fontColor = UIColor.blackColor()
+        lb_points.position = CGPoint(
+            x:(CGRectGetMidX(main_scene.frame) + CGRectGetMidX(main_scene.frame)/2),
+            y:(CGRectGetMidY(main_scene.frame) + CGRectGetMidY(main_scene.frame)/2))
+        main_scene.addChild(lb_points)
     }
     
     private func setBackGroundColor(color: UIColor){
