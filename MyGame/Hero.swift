@@ -26,9 +26,10 @@ class Hero: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(self_: SKScene){
-        main_scene = self_;
+    init(scene: SKScene){
+        main_scene = scene;
         
+        // add texture images
         TextureAtlas = SKTextureAtlas(named: "WinImages")
         for i in 1...TextureAtlas.textureNames.count{
             TextureArray.append(SKTexture(imageNamed: "win_\(i).png"))
@@ -47,8 +48,8 @@ class Hero: SKSpriteNode {
     }
     
     func loadPhysicsBodyWithSize(size: CGSize) {
+        // make physicsBody a bit smaller than the Image
         physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(size.width - 10, size.height - 20))
-        //rectangleOfSize: size)
         physicsBody?.categoryBitMask = heroCategory
         physicsBody?.contactTestBitMask = wallCategory
         physicsBody?.affectedByGravity = false
@@ -57,6 +58,10 @@ class Hero: SKSpriteNode {
     func addToScene(){
         position = start_pos;
         main_scene.addChild(self)
+    }
+    
+    func removeFromScene(){
+        removeFromParent()
     }
     
     func startRun(){
@@ -74,11 +79,6 @@ class Hero: SKSpriteNode {
         self.removeAllActions()
     }
     
-    func stopAndRemove(){
-        stopRun()
-        removeFromParent()
-    }
-    
     func jump(){
         
         if(jumping){
@@ -94,7 +94,3 @@ class Hero: SKSpriteNode {
     }
     
 }
-
-
-
-

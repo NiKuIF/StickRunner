@@ -12,72 +12,74 @@ import SpriteKit
 
 class MenuManager {
     
-    var MainLabel = SKLabelNode(fontNamed: "Chalkduster")
-    var BackToStartScreenLabel = SKLabelNode(fontNamed: "Chalkduster")
-    var TestLabel = SKLabelNode(fontNamed: "Chalkduster")
+    var lb_main = SKLabelNode(fontNamed: "Chalkduster")
+    var lb_back = SKLabelNode(fontNamed: "Chalkduster")
+    var lb_points = SKLabelNode(fontNamed: "Chalkduster")
+    
+    var lb_test = SKLabelNode(fontNamed: "Chalkduster")
     
     private var main_scene: SKScene
     
     
-    init(self_: SKScene) {
-        main_scene = self_
-        
-        // set backgroundColor
+    init(scene: SKScene) {
+        main_scene = scene
         setBackGroundColor(UIColor.blackColor())
     }
     
     func setupFirstStart(){
         setupMainLabel()
-        // setupPCLabel()
-        setupBTSLabel()
+        setupBackLabel()
     }
     
     func gameStart(){
-        MainLabel.text = ""
+        lb_main.text = ""
         setBackGroundColor(UIColor.whiteColor())
     }
     
     func gameBackToMenu(){
         setBackGroundColor(UIColor.blackColor())
-        MainLabel.text = "StickRunner"
-        MainLabel.fontColor = UIColor.whiteColor()
-        BackToStartScreenLabel.text = ""
+        lb_main.text = "StickRunner"
+        lb_main.fontColor = UIColor.whiteColor()
+        lb_back.text = ""
     }
     
     func gameOver(){
-        MainLabel.fontColor = UIColor.blackColor()
-        MainLabel.text = "Game Over"
-        BackToStartScreenLabel.text = "Back"
+        lb_main.fontColor = UIColor.blackColor()
+        lb_main.text = "Game Over"
+        lb_back.text = "Back"
     }
     
     func setTestLabelText(content: String){
-        TestLabel.text = content;
+        lb_test.text = content;
     }
     
     func addTestLabel(){
-        TestLabel.fontSize = 30
-        TestLabel.fontColor = UIColor.redColor()
-        TestLabel.position = CGPoint(
+        lb_test.fontSize = 30
+        lb_test.fontColor = UIColor.redColor()
+        lb_test.position = CGPoint(
             x:(CGRectGetMidX(main_scene.frame) + CGRectGetMidX(main_scene.frame)/2),
             y:(CGRectGetMidY(main_scene.frame) + CGRectGetMidY(main_scene.frame)/2))
-        main_scene.addChild(TestLabel)
+        main_scene.addChild(lb_test)
     }
     
     private func setupMainLabel(){
-        MainLabel.text = "StickRunner"
-        MainLabel.fontSize = 50
-        MainLabel.fontColor = UIColor.whiteColor()
-        MainLabel.position = CGPoint(x:CGRectGetMidX(main_scene.frame), y:CGRectGetMidY(main_scene.frame))
-        main_scene.addChild(MainLabel)
+        lb_main.text = "StickRunner"
+        lb_main.fontSize = 70
+        lb_main.fontColor = UIColor.whiteColor()
+        lb_main.position = CGPoint(
+            x:CGRectGetMidX(main_scene.frame),
+            y:CGRectGetMidY(main_scene.frame))
+        main_scene.addChild(lb_main)
     }
     
-    private func setupBTSLabel(){
-        BackToStartScreenLabel.fontSize = 50
-        BackToStartScreenLabel.fontColor = UIColor.blackColor()
-        BackToStartScreenLabel.position = CGPoint(
+    private func setupBackLabel(){
+        lb_back.text = ""
+        lb_back.fontSize = 50
+        lb_back.fontColor = UIColor.blackColor()
+        lb_back.position = CGPoint(
             x:(CGRectGetMidX(main_scene.frame) - CGRectGetMidX(main_scene.frame)/2),
             y:(CGRectGetMidY(main_scene.frame) + CGRectGetMidY(main_scene.frame)/2))
-        main_scene.addChild(BackToStartScreenLabel)
+        main_scene.addChild(lb_back)
     }
     
     private func setBackGroundColor(color: UIColor){

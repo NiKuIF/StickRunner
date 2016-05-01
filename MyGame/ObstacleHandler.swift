@@ -14,28 +14,18 @@ class ObstacleHandler {
     private var main_scene: SKScene
     private var generationTimer: NSTimer?
     var squares = [ObstacleSquare]()
-    var squares_tracker = [ObstacleSquare]()
-    
-    private var baseline_thickness: CGFloat
+    var squares_tracker = [ObstacleSquare]() // to count points
     
     private var fireing = false;
     
     
-    init(self_: SKScene){
-        main_scene = self_;
-        baseline_thickness = 4;
+    init(scene: SKScene, seconds: NSTimeInterval){
+        main_scene = scene;
+        startGeneratingWallsEvery(seconds)
+        drawBaseLine()
     }
     
-    func drawBaseLine(){
-        let base_line = SKSpriteNode(color: UIColor.blackColor(),
-                                     size: CGSizeMake(main_scene.size.width, baseline_thickness))
-        base_line.position = CGPointMake(CGRectGetMidX(main_scene.frame),
-                                         CGRectGetMidY(main_scene.frame) -
-                                            CGRectGetMidY(main_scene.frame)/3)
-        main_scene.addChild(base_line)
-    }
-    
-    func startGeneratingWallsEvery(seconds: NSTimeInterval) {
+    private func startGeneratingWallsEvery(seconds: NSTimeInterval) {
         
         // standard false, because we only start the timer once
         fireing = false
@@ -47,14 +37,24 @@ class ObstacleHandler {
                                         repeats: true)
     }
     
+    func continueSquareGeneration(){
+        fireing = true;
+    }
+    
+    func pauseGeneratingSquares(){
+        fireing = false;
+        
+        for square in squares {
+            square.stopMoving()
+        }
+    }
+    
     // @objc prefix for Selector usage
     @objc func generateSquare() {
         
         if(!fireing){
             return;
         }
-        
-        //NSLog("generate Square")
         
         let square = ObstacleSquare()
         square.position.x = main_scene.size.width
@@ -70,12 +70,6 @@ class ObstacleHandler {
          x: main_scene.size.width/3,
          y: main_scene.size.height/2 - main_scene.size.height/16)
          */
-        
-    }
-    
-    func deleteSquares(){
-        squares.removeAll()
-        squares_tracker.removeAll()
     }
     
     func startMoveSquare(){
@@ -84,28 +78,32 @@ class ObstacleHandler {
         }
     }
     
-    func continueSquareGeneration(){
-        fireing = true;
-    }
-    
     func stopMoveSquare(){
         for square in squares {
             square.stopMoving()
         }
     }
     
-    func stopGeneratingSquares(){
-        fireing = false;
-
-        for square in squares {
-            square.stopMoving()
-        }
-    }
-    
-    func removeAllSquares(){
+    func deleteAllSquares(){
         for square in squares{
+            square.removeAllChildren()
             square.removeFromParent()
         }
+        squares.removeAll()
+        
+        /*for square in squares_tracker{
+         square.removeFromParent()
+         }*/
+        squares_tracker.removeAll()
+    }
+    
+    private func drawBaseLine(){
+        let base_line = SKSpriteNode(color: UIColor.blackColor(),
+                                     size: CGSizeMake(main_scene.size.width, 4))
+        base_line.position = CGPointMake(CGRectGetMidX(main_scene.frame),
+                                         CGRectGetMidY(main_scene.frame) -
+                                            CGRectGetMidY(main_scene.frame)/3)
+        main_scene.addChild(base_line)
     }
     
  }

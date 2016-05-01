@@ -29,14 +29,14 @@ class ObstacleSquare: SKSpriteNode {
     init(child: Bool) {
         let size_ = CGSizeMake(SQUARE_SIDE - 8, SQUARE_SIDE - 8)
         super.init(texture: nil, color: UIColor.whiteColor(), size: size_)
-        // do not move the childSquares -> relativily
+        // do not move the childSquares -> relativity
     }
     
     deinit {
         // NSLog("deinit called!!!\n")
+        self.removeAllActions()
         self.removeAllChildren()
         self.removeFromParent()
-        self.removeAllActions()
     }
     
     func loadPhysicsBodyWithSize(size: CGSize) {
@@ -51,7 +51,7 @@ class ObstacleSquare: SKSpriteNode {
     }
     
     func startMoving() {
-        let moveLeft = SKAction.moveByX(-150, y: 0, duration: 1)
+        let moveLeft = SKAction.moveByX(-200, y: 0, duration: 1)
         runAction(SKAction.repeatActionForever(moveLeft))
     }
     

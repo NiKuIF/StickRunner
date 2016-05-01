@@ -12,7 +12,6 @@ enum GameState {
     case START_SCREEN
     case GAME_PLAY
     case GAME_DEAD
-    case GAME_PAUSE
 }
 
 // SKPhysicsContactDelegate 
@@ -27,27 +26,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         
-        // add physics world
+        // add physics world, for collision detection
         physicsWorld.contactDelegate = self
         
         // create MenuManager and setup First Start
-        menu_manager = MenuManager(self_: self)
+        menu_manager = MenuManager(scene: self)
         menu_manager.setupFirstStart()
         
         // create ObstacleHandler
-        obstacle_handler = ObstacleHandler(self_: self)
+        obstacle_handler = ObstacleHandler(scene: self, seconds: 2)
         
         // create Hero
-        hero = Hero(self_: self)
+        hero = Hero(scene: self)
         
-        obstacle_handler.startGeneratingWallsEvery(2)
-        
+        // only for testing purposes
         menu_manager.addTestLabel()
-        
         menu_manager.setTestLabelText("points: 0")
-        
     }
     
+    // fired every screen touch
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
        
         if(game_state == GameState.START_SCREEN){
@@ -57,7 +54,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             hero.jump()
         }
         else if( game_state == GameState.GAME_DEAD){
-            restartGame(touches)
+            backToMenu(touches)
         }
     }
    
@@ -102,7 +99,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         hero.jumping = false;
         hero.stopRun()
-        obstacle_handler.stopGeneratingSquares()
+        obstacle_handler.pauseGeneratingSquares()
         menu_manager.gameOver()
         
         game_state = GameState.GAME_DEAD
@@ -120,24 +117,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         hero.addToScene()
         hero.startRun()
         
-        // draw base line
-        obstacle_handler.drawBaseLine()
-        
         // start wall generation
         obstacle_handler.continueSquareGeneration()
         
         game_state = GameState.GAME_PLAY
     }
     
-    func restartGame(touches: Set<UITouch>){
+    func backToMenu(touches: Set<UITouch>){
         if let touch = touches.first {
-            let touch_pos_back :CGPoint = touch.locationInNode(menu_manager.BackToStartScreenLabel)
-            if(touch_pos_back.x < 50 && touch_pos_back.x > -150 && touch_pos_back.y > -4)
+            let touch_pos_back :CGPoint = touch.locationInNode(menu_manager.lb_back)
+            if(touch_pos_back.x < 50 &&
+               touch_pos_back.x > -150 &&
+               touch_pos_back.y > -4)
             {
                 menu_manager.gameBackToMenu()
-                hero.stopAndRemove()
-                obstacle_handler.removeAllSquares()
-                obstacle_handler.deleteSquares()
+                hero.removeFromScene()
+                obstacle_handler.deleteAllSquares()
                 game_state = GameState.START_SCREEN
             }
         }
