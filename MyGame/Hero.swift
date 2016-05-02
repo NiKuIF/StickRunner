@@ -106,8 +106,27 @@ class Hero: SKSpriteNode {
     }
     
     func jumpPhysics(){
-       // player.physicsBody!.applyForce(CGVectorMake(0, 400))
+        
+        if(jumping){
+            // check if hero is back on the baseline
+            // 308.757
+            if(self.position.y < 310 && self.position.y > 306){
+                NSLog("back to baseline")
+                jumping = false
+                jump_count = 0
+            }
+            else{
+                return;
+            }
+            //return;
+        }
+        
+        jump_count += 1
         physicsBody?.applyImpulse(CGVectorMake(0, 80))
+        
+        if( jump_count == 2){
+            jumping = true
+        }
     }
     
     func addToScene(){

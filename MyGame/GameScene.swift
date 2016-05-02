@@ -96,9 +96,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //http://stackoverflow.com/questions/26193278/spritekit-didbegincontact-three-object-not-worked
         
-        
-        NSLog("Contact")
-        
         var first_body, second_body: SKPhysicsBody
         
         if(contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask){
@@ -111,14 +108,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if((first_body.categoryBitMask & HERO_CATEGORY) != 0 &&
             (second_body.categoryBitMask & SQUARE_CATEGORY) != 0){
-            NSLog("SQUARE\n")
+           // NSLog("SQUARE\n")
         }
         
         if((first_body.categoryBitMask & HERO_CATEGORY) != 0 &&
             (second_body.categoryBitMask & BASELINE_CATEGORY) != 0){
-            NSLog("BASELINE\n")
+          // NSLog("BASELINE\n")
         }
         
+        NSLog("Hero pos: \(hero.position.y)")
+        NSLog("baseline: \(CGRectGetMidY(self.frame) - CGRectGetMidY(self.frame)/3)")
+        //277.333
         /*
         // add hero fall animation
         hero.jumping = false;
