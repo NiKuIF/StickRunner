@@ -18,3 +18,4 @@ let TEST_FONTSIZE: CGFloat = 30.0
 // Collision Detection
 let HERO_CATEGORY: UInt32 = 0x1 << 0
 let SQUARE_CATEGORY: UInt32 = 0x1 << 1
+let BASELINE_CATEGORY: UInt32 = 0x1 << 2

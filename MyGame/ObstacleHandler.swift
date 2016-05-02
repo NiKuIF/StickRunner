@@ -103,6 +103,12 @@ class ObstacleHandler {
         base_line.position = CGPointMake(CGRectGetMidX(main_scene.frame),
                                          CGRectGetMidY(main_scene.frame) -
                                             CGRectGetMidY(main_scene.frame)/3)
+        
+        base_line.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(main_scene.size.width, 4))
+        base_line.physicsBody?.categoryBitMask = BASELINE_CATEGORY
+        base_line.physicsBody?.contactTestBitMask = HERO_CATEGORY
+        base_line.physicsBody?.dynamic = false
+        
         main_scene.addChild(base_line)
     }
     
