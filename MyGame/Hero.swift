@@ -61,20 +61,6 @@ class Hero: SKSpriteNode {
         physicsBody?.allowsRotation = false
     }
     
-    func jumpSequence(){
-        
-        if(jumping){
-            return;
-        }
-        
-        let jumpUpAction = SKAction.moveByX(0, y:70, duration:0.5)
-        let jumpDownAction = SKAction.moveByX(0, y:-70, duration:0.5)
-        let jumpSequence = SKAction.sequence([jumpUpAction, jumpDownAction])
-        
-        jumping = true
-        self.runAction(jumpSequence, completion: { self.jumping = false })
-    }
-    
     func jumpPhysics(){
         
         if(jumping){

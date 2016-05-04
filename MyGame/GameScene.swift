@@ -55,7 +55,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             startGame()
         }
         else if(game_state == GameState.GAME_PLAY){
-            // hero.jumpSequence()
             hero.jumpPhysics()
         }
         else if( game_state == GameState.GAME_DEAD){
@@ -64,11 +63,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
    
     override func update(currentTime: CFTimeInterval) {
-        
-        NSLog("hero:( \(hero.position.x),\(hero.position.y))")
-        
-        // 307 when he touches the basline
-        
         
         // update to count points
         if obstacle_handler.squares_tracker.count > 0 {
@@ -103,13 +97,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             // Game Over Action
             // add hero fall animation
-           /* hero.jumping = false;
+            hero.jumping = false;
             hero.stopRun()
             obstacle_handler.pauseGeneratingSquares()
             menu_manager.gameOver()
             
             game_state = GameState.GAME_DEAD
-            */return;
+            return;
         }
         
         if((first_body.categoryBitMask & HERO_CATEGORY) != 0 &&
@@ -118,8 +112,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // nothing happend, just that he didn't fall to nirvana
         }
         
-        NSLog("Hero pos: \(hero.position.y)")
-
         // check for new Highscore, if then save
         if(point_counter > highscore){
             highscore = point_counter
