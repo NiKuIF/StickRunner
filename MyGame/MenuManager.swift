@@ -17,6 +17,8 @@ class MenuManager {
     var lb_points = SKLabelNode(fontNamed: "Chalkduster")
     var lb_highscore = SKLabelNode(fontNamed: "Chalkduster")
     
+    var lb_restart = SKLabelNode(fontNamed: "Chalkduster")
+    
     var lb_test = SKLabelNode(fontNamed: "Chalkduster")
     
     private var main_scene: SKScene

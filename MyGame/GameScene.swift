@@ -19,7 +19,7 @@ enum GameState {
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var menu_manager: MenuManager!
-    var hero = Hero()
+    var hero: Hero!
     var obstacle_handler: ObstacleHandler!
     
     var point_counter = 0
@@ -28,8 +28,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var highscore = 0
     
     override func didMoveToView(view: SKView) {
-        
-        NSLog("APP-Start")
         
         // add physics world, for collision detection
         physicsWorld.contactDelegate = self
@@ -47,13 +45,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         obstacle_handler = ObstacleHandler(scene: self, seconds: 2)
         
         // create Hero
-        // hero = Hero(scene: self)
-        hero.position = CGPoint(
-            x: self.size.width/3 - self.size.width/16,
-            y: self.size.height/2 - self.size.height/16)
-        
-        hero.start_pos = hero.position;
-        
+        hero = Hero(scene: self)
     }
     
     // fired every screen touch
@@ -73,8 +65,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
    
     override func update(currentTime: CFTimeInterval) {
         
+        NSLog("hero:( \(hero.position.x),\(hero.position.y))")
         
-        // NSLog("hero pos: \(hero.position.y)")
+        // 307 when he touches the basline
+        
         
         // update to count points
         if obstacle_handler.squares_tracker.count > 0 {
@@ -92,10 +86,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // SKPhysicsContactDelegate - fires when hero runs against square
     func didBeginContact(contact: SKPhysicsContact) {
-        // game over
-        
-        //http://stackoverflow.com/questions/26193278/spritekit-didbegincontact-three-object-not-worked
-        
+
         var first_body, second_body: SKPhysicsBody
         
         if(contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask){
@@ -108,31 +99,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if((first_body.categoryBitMask & HERO_CATEGORY) != 0 &&
             (second_body.categoryBitMask & SQUARE_CATEGORY) != 0){
-           // NSLog("SQUARE\n")
+            // NSLog("SQUARE\n")
+            
+            // Game Over Action
+            // add hero fall animation
+           /* hero.jumping = false;
+            hero.stopRun()
+            obstacle_handler.pauseGeneratingSquares()
+            menu_manager.gameOver()
+            
+            game_state = GameState.GAME_DEAD
+            */return;
         }
         
         if((first_body.categoryBitMask & HERO_CATEGORY) != 0 &&
             (second_body.categoryBitMask & BASELINE_CATEGORY) != 0){
-          // NSLog("BASELINE\n")
+            // NSLog("BASELINE\n")
+            // nothing happend, just that he didn't fall to nirvana
         }
         
         NSLog("Hero pos: \(hero.position.y)")
-        NSLog("baseline: \(CGRectGetMidY(self.frame) - CGRectGetMidY(self.frame)/3)")
-        //277.333
-        /*
-        // add hero fall animation
-        hero.jumping = false;
-        hero.stopRun()
-        obstacle_handler.pauseGeneratingSquares()
-        menu_manager.gameOver()
-        
-        game_state = GameState.GAME_DEAD
-        
+
         // check for new Highscore, if then save
         if(point_counter > highscore){
             highscore = point_counter
             HighscoreSave.saveHighscore(highscore)
-        }*/
+        }
     }
     
     func startGame(){
@@ -143,7 +135,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // show hero
         hero.addToScene()
-        addChild(hero)
         hero.startRun()
         
         // start wall generation

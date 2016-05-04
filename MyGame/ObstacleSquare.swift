@@ -33,7 +33,6 @@ class ObstacleSquare: SKSpriteNode {
     }
     
     deinit {
-        // NSLog("deinit called!!!\n")
         self.removeAllActions()
         self.removeAllChildren()
         self.removeFromParent()
