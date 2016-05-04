@@ -49,6 +49,10 @@ class ObstacleHandler {
         }
     }
     
+    func pauseGenerating(){
+        fireing = false;
+    }
+    
     // @objc prefix for Selector usage
     @objc func generateSquare() {
         

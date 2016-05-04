@@ -10,11 +10,13 @@ import UIKit
 import SpriteKit
 
 class GameViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if let scene = GameScene(fileNamed:"GameScene") {
+        
+        let scene = GameScene(fileNamed: "GameScene")
+        
+        if (scene != nil) {
             // Configure the view.
             let skView = self.view as! SKView
             skView.showsFPS = true
@@ -24,15 +26,47 @@ class GameViewController: UIViewController {
             skView.ignoresSiblingOrder = true
             
             /* Set the scale mode to scale to fit the window */
-            scene.scaleMode = .AspectFill
+            scene!.scaleMode = .AspectFill
             
             /* Disable Multiple Touches*/
             skView.multipleTouchEnabled = false
             
             skView.presentScene(scene)
         }
+        
+        // resign active Observer
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: #selector(GameViewController.obMethResignActive(_:)),
+            name: UIApplicationWillResignActiveNotification,
+            object: nil)
+        
+        // did become active Observer
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: #selector(GameViewController.obMethDidBecomeActive(_:)),
+            name: UIApplicationDidBecomeActiveNotification,
+            object: nil)
     }
-
+    
+    @objc func obMethResignActive(notific: NSNotification) {
+        // NSLog("obMethResignActive")
+        if( obstacle_handler == nil ||
+            game_state == GameState.START_SCREEN ||
+            game_state == GameState.GAME_DEAD){
+            return; }
+        
+        obstacle_handler.pauseGenerating()
+    }
+    
+    @objc func obMethDidBecomeActive(notific: NSNotification) {
+        //NSLog("obMethDidBecomeActive")
+        if( obstacle_handler == nil ||
+            game_state == GameState.START_SCREEN ||
+            game_state == GameState.GAME_DEAD){
+            return; }
+        
+        obstacle_handler.continueSquareGeneration()
+    }
+    
     override func shouldAutorotate() -> Bool {
         return true
     }

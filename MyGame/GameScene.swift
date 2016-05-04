@@ -14,16 +14,19 @@ enum GameState {
     case GAME_DEAD
 }
 
-// SKPhysicsContactDelegate 
+var obstacle_handler: ObstacleHandler!
+var game_state = GameState.START_SCREEN
+
+// SKPhysicsContactDelegate
 // for physics action, like collision detection
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var menu_manager: MenuManager!
     var hero: Hero!
-    var obstacle_handler: ObstacleHandler!
+    // var obstacle_handler: ObstacleHandler!
     
     var point_counter = 0
-    var game_state = GameState.START_SCREEN
+    // var game_state = GameState.START_SCREEN
     
     var highscore = 0
     
@@ -150,4 +153,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
+    
+    
+    func stopTimer(){
+        obstacle_handler.pauseGeneratingSquares()
+    }
+    
+    static func getInstance() -> GameScene.Type{
+        return self;
+    }
+    
 }

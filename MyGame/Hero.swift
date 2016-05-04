@@ -82,7 +82,7 @@ class Hero: SKSpriteNode {
     private func checkIfResetJumpVars()-> Bool{
         // check if hero is back on the baseline
         // todo: not hardcoded 308.757
-        if(self.position.y < 309 && self.position.y > 306){
+        if(self.position.y < 311 && self.position.y > 304){
             //NSLog("back to baseline")
             jumping = false
             jump_count = 0
