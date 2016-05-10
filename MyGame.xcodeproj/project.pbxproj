@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E494EDA1CE2578400D69C2A /* AppIcons in Resources */ = {isa = PBXBuildFile; fileRef = 2E494ED91CE2578400D69C2A /* AppIcons */; };
 		2E5CE8581CCD4FF4004746C0 /* MenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CE8571CCD4FF4004746C0 /* MenuManager.swift */; };
 		2E5CE85B1CCD597B004746C0 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CE85A1CCD597B004746C0 /* Hero.swift */; };
 		2E5CE8601CCD5FD4004746C0 /* ObstacleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CE85F1CCD5FD4004746C0 /* ObstacleHandler.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E494ED91CE2578400D69C2A /* AppIcons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcons; sourceTree = "<group>"; };
 		2E5CE8571CCD4FF4004746C0 /* MenuManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuManager.swift; sourceTree = "<group>"; };
 		2E5CE85A1CCD597B004746C0 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		2E5CE85F1CCD5FD4004746C0 /* ObstacleHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleHandler.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				2E69CF6E1CCCEE650058B069 /* AppDelegate.swift */,
 				2EB430A41CCEDA1A008C1605 /* GameConstants.swift */,
 				2E69CF701CCCEE650058B069 /* GameScene.sks */,
+				2E494ED91CE2578400D69C2A /* AppIcons */,
 				2E69CF721CCCEE650058B069 /* GameScene.swift */,
 				2E69CF741CCCEE650058B069 /* GameViewController.swift */,
 				2E69CF761CCCEE650058B069 /* Main.storyboard */,
@@ -185,6 +188,7 @@
 				2E69CF711CCCEE650058B069 /* GameScene.sks in Resources */,
 				2E69CF871CCCEF730058B069 /* WinImages.atlas in Resources */,
 				2E69CF7D1CCCEE650058B069 /* LaunchScreen.storyboard in Resources */,
+				2E494EDA1CE2578400D69C2A /* AppIcons in Resources */,
 				2E69CF7A1CCCEE650058B069 /* Assets.xcassets in Resources */,
 				2E69CF781CCCEE650058B069 /* Main.storyboard in Resources */,
 			);
@@ -320,7 +324,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MyGame/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IRONFactory.MyGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -333,7 +337,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MyGame/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IRONFactory.MyGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
