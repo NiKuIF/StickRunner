@@ -63,7 +63,7 @@ class ObstacleHandler {
     
     private func produceObstacle(){
         
-        let squared = ObstacleGenerator.prodFourObstacle()
+        let squared = ObstacleGenerator.prodSimpleObstacles()
         
         
         for square in squared {

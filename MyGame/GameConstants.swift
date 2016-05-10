@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+
+// ***CONSTANTS*****************************************************************
+
 // Font Sizes
 let BIG_FONTSIZE: CGFloat = 70.0
 let MIDDLE_FONTSIZE: CGFloat = 50.0
@@ -22,3 +25,9 @@ let BASELINE_CATEGORY: UInt32 = 0x1 << 2
 
 // Square Size
 let SQUARE_SIDE: CGFloat = 30.0
+
+
+
+// ***Fixed VARS****************************************************************
+var SCENE_WIDTH: CGFloat = 0.0
+var SCENE_HEIGHT: CGFloat = 0.0

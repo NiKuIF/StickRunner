@@ -30,6 +30,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         
+        // global Vars 
+        SCENE_WIDTH = self.size.width
+        SCENE_HEIGHT = self.size.height        
+        
         // add physics world, for collision detection
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVectorMake(0.0, -5.0)
@@ -64,7 +68,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
    
     override func update(currentTime: CFTimeInterval) {
-        
+    
         // update to count points
         if obstacle_handler.squares_tracker.count > 0 {
             
