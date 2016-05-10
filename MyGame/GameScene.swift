@@ -14,6 +14,8 @@ enum GameState {
     case GAME_DEAD
 }
 
+// they are global, so that we can handle when we switch to 
+// background or became active again
 var obstacle_handler: ObstacleHandler!
 var game_state = GameState.START_SCREEN
 
@@ -23,11 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var menu_manager: MenuManager!
     var hero: Hero!
-    // var obstacle_handler: ObstacleHandler!
-    
     var point_counter = 0
-    // var game_state = GameState.START_SCREEN
-    
     var highscore = 0
     
     override func didMoveToView(view: SKView) {
@@ -45,7 +43,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         menu_manager.setHighscoreLabel(highscore)
         
         // create ObstacleHandler
-        obstacle_handler = ObstacleHandler(scene: self, seconds: 2)
+        obstacle_handler = ObstacleHandler(scene: self, seconds: 1)
         
         // create Hero
         hero = Hero(scene: self)
@@ -76,6 +74,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if square_pos.x < hero.position.x + 10 {
                 obstacle_handler.squares_tracker.removeAtIndex(0)
                 point_counter += 1
+                obstacle_handler.act_points = point_counter
                 menu_manager.updatePointsLabel(point_counter)
             }
         }
@@ -153,14 +152,4 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
-    
-    
-    func stopTimer(){
-        obstacle_handler.pauseGeneratingSquares()
-    }
-    
-    static func getInstance() -> GameScene.Type{
-        return self;
-    }
-    
 }

@@ -11,6 +11,7 @@
 		2E5CE8581CCD4FF4004746C0 /* MenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CE8571CCD4FF4004746C0 /* MenuManager.swift */; };
 		2E5CE85B1CCD597B004746C0 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CE85A1CCD597B004746C0 /* Hero.swift */; };
 		2E5CE8601CCD5FD4004746C0 /* ObstacleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CE85F1CCD5FD4004746C0 /* ObstacleHandler.swift */; };
+		2E60D7CD1CE2817C0007318D /* ObstacleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E60D7CC1CE2817C0007318D /* ObstacleGenerator.swift */; };
 		2E69CF6F1CCCEE650058B069 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E69CF6E1CCCEE650058B069 /* AppDelegate.swift */; };
 		2E69CF711CCCEE650058B069 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2E69CF701CCCEE650058B069 /* GameScene.sks */; };
 		2E69CF731CCCEE650058B069 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E69CF721CCCEE650058B069 /* GameScene.swift */; };
@@ -29,6 +30,7 @@
 		2E5CE8571CCD4FF4004746C0 /* MenuManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuManager.swift; sourceTree = "<group>"; };
 		2E5CE85A1CCD597B004746C0 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		2E5CE85F1CCD5FD4004746C0 /* ObstacleHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleHandler.swift; sourceTree = "<group>"; };
+		2E60D7CC1CE2817C0007318D /* ObstacleGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleGenerator.swift; sourceTree = "<group>"; };
 		2E69CF6B1CCCEE650058B069 /* MyGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E69CF6E1CCCEE650058B069 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E69CF701CCCEE650058B069 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				2E5CE85F1CCD5FD4004746C0 /* ObstacleHandler.swift */,
+				2E60D7CC1CE2817C0007318D /* ObstacleGenerator.swift */,
 				2EB430A21CCED3B7008C1605 /* ObstacleSquare.swift */,
 			);
 			name = Ground;
@@ -104,12 +107,12 @@
 				2E5CE8591CCD596E004746C0 /* Hero */,
 				2E5CE8561CCD4FD7004746C0 /* MenuManager */,
 				2E69CF861CCCEF730058B069 /* WinImages.atlas */,
-				2E69CF6E1CCCEE650058B069 /* AppDelegate.swift */,
-				2EB430A41CCEDA1A008C1605 /* GameConstants.swift */,
-				2E69CF701CCCEE650058B069 /* GameScene.sks */,
 				2E494ED91CE2578400D69C2A /* AppIcons */,
 				2E69CF721CCCEE650058B069 /* GameScene.swift */,
 				2E69CF741CCCEE650058B069 /* GameViewController.swift */,
+				2EB430A41CCEDA1A008C1605 /* GameConstants.swift */,
+				2E69CF6E1CCCEE650058B069 /* AppDelegate.swift */,
+				2E69CF701CCCEE650058B069 /* GameScene.sks */,
 				2E69CF761CCCEE650058B069 /* Main.storyboard */,
 				2E69CF791CCCEE650058B069 /* Assets.xcassets */,
 				2E69CF7B1CCCEE650058B069 /* LaunchScreen.storyboard */,
@@ -201,6 +204,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E60D7CD1CE2817C0007318D /* ObstacleGenerator.swift in Sources */,
 				2E96360E1CD63610007779AD /* HighscoreSave.swift in Sources */,
 				2E5CE8601CCD5FD4004746C0 /* ObstacleHandler.swift in Sources */,
 				2EB430A31CCED3B7008C1605 /* ObstacleSquare.swift in Sources */,

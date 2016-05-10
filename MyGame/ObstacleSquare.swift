@@ -11,16 +11,13 @@ import SpriteKit
 
 class ObstacleSquare: SKSpriteNode {
     
-    let SQUARE_SIDE: CGFloat = 30.0
-    let SQUARE_COLOR = UIColor.blackColor()
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     init(){
         let size_ = CGSizeMake(SQUARE_SIDE, SQUARE_SIDE)
-        super.init(texture: nil, color: SQUARE_COLOR, size: size_)
+        super.init(texture: nil, color: UIColor.blackColor(), size: size_)
         
         loadPhysicsBodyWithSize(size)
         startMoving()
@@ -58,5 +55,4 @@ class ObstacleSquare: SKSpriteNode {
     func stopMoving() {
         removeAllActions()
     }
-    
 }

@@ -13,14 +13,20 @@ class ObstacleHandler {
     
     private var main_scene: SKScene
     private var generationTimer: NSTimer?
-    var squares = [ObstacleSquare]()
-    var squares_tracker = [ObstacleSquare]() // to count points
+    var squares = Array<ObstacleSquare>()
+    var squares_tracker = Array<ObstacleSquare>() // to count points
     
     private var fireing = false;
+    
+    // for random obstacle generation
+    var act_points = 0;
+    private var timer_divider = 2;
+    private var divider_counter = 0;
     
     
     init(scene: SKScene, seconds: NSTimeInterval){
         main_scene = scene;
+        ObstacleGenerator.main_scene = main_scene
         startGeneratingWallsEvery(seconds)
         drawBaseLine()
     }
@@ -35,6 +41,37 @@ class ObstacleHandler {
                                         selector: #selector(ObstacleHandler.generateSquare),
                                         userInfo: nil,
                                         repeats: true)
+    }
+
+    // @objc prefix for Selector usage
+    @objc func generateSquare() {
+        
+        if(!fireing){
+            return;
+        }
+        
+        divider_counter += 1;
+        if(divider_counter < timer_divider){
+            return;
+        }
+        else{
+            divider_counter = 0;
+        }
+        
+        produceObstacle()
+    }
+    
+    private func produceObstacle(){
+        
+        let squared = ObstacleGenerator.prodFourObstacle()
+        
+        
+        for square in squared {
+            squares.append(square)
+            squares_tracker.append(square)
+            main_scene.addChild(square)
+        }
+    
     }
     
     func continueSquareGeneration(){
@@ -51,29 +88,6 @@ class ObstacleHandler {
     
     func pauseGenerating(){
         fireing = false;
-    }
-    
-    // @objc prefix for Selector usage
-    @objc func generateSquare() {
-        
-        if(!fireing){
-            return;
-        }
-        
-        let square = ObstacleSquare()
-        square.position.x = main_scene.size.width
-        square.position.y = main_scene.size.height/2 -
-                            main_scene.size.height/8 -
-                            square.size.height/2
-        square.addSmallSquare()
-        squares.append(square)
-        squares_tracker.append(square)
-        main_scene.addChild(square)
-
-        /*
-         x: main_scene.size.width/3,
-         y: main_scene.size.height/2 - main_scene.size.height/16)
-         */
     }
     
     func startMoveSquare(){
