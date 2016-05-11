@@ -48,7 +48,7 @@ class ObstacleSquare: SKSpriteNode {
     }
     
     func startMoving() {
-        let moveLeft = SKAction.moveByX(-200, y: 0, duration: 1)
+        let moveLeft = SKAction.moveByX(-SQUARE_SPEED, y: 0, duration: 1)
         runAction(SKAction.repeatActionForever(moveLeft))
     }
     

@@ -27,7 +27,10 @@ let BASELINE_CATEGORY: UInt32 = 0x1 << 2
 let SQUARE_SIDE: CGFloat = 30.0
 
 
-
 // ***Fixed VARS****************************************************************
 var SCENE_WIDTH: CGFloat = 0.0
 var SCENE_HEIGHT: CGFloat = 0.0
+
+
+// ***Variable VARS*************************************************************
+var SQUARE_SPEED: CGFloat = 200.0 

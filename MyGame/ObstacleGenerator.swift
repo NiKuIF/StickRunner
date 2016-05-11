@@ -16,15 +16,12 @@ import SpriteKit
 
 class ObstacleGenerator {
    
-    // maybe we can do better and produce a empty scene
-    static var main_scene: SKScene = SKScene.init()
-    
     static func prodSingleObstacle()-> ObstacleSquare{
         
         let square = ObstacleSquare()
-        square.position.x = main_scene.size.width
-        square.position.y = main_scene.size.height/2 -
-            main_scene.size.height/8 -
+        square.position.x = SCENE_WIDTH
+        square.position.y = SCENE_HEIGHT/2 -
+            SCENE_HEIGHT/8 -
             square.size.height/2
         square.addSmallSquare()
        
@@ -55,16 +52,16 @@ class ObstacleGenerator {
         var squares = Array<ObstacleSquare>()
         
         let square = ObstacleSquare()
-        square.position.x = main_scene.size.width
-        square.position.y = main_scene.size.height/2 -
-            main_scene.size.height/8 -
+        square.position.x = SCENE_WIDTH
+        square.position.y = SCENE_HEIGHT/2 -
+            SCENE_HEIGHT/8 -
             square.size.height/2
         square.addSmallSquare()
         
         let square1 = ObstacleSquare()
-        square1.position.x = main_scene.size.width + SQUARE_SIDE
-        square1.position.y = main_scene.size.height/2 -
-            main_scene.size.height/8 -
+        square1.position.x = SCENE_WIDTH + SQUARE_SIDE
+        square1.position.y = SCENE_HEIGHT/2 -
+            SCENE_HEIGHT/8 -
             square1.size.height/2
         square1.addSmallSquare()
         
@@ -78,23 +75,23 @@ class ObstacleGenerator {
         var squares = Array<ObstacleSquare>()
         
         let square = ObstacleSquare()
-        square.position.x = main_scene.size.width
-        square.position.y = main_scene.size.height/2 -
-            main_scene.size.height/8 -
+        square.position.x = SCENE_WIDTH
+        square.position.y = SCENE_HEIGHT/2 -
+            SCENE_HEIGHT/8 -
             square.size.height/2
         square.addSmallSquare()
         
         let square1 = ObstacleSquare()
-        square1.position.x = main_scene.size.width + SQUARE_SIDE
-        square1.position.y = main_scene.size.height/2 -
-            main_scene.size.height/8 -
+        square1.position.x = SCENE_WIDTH + SQUARE_SIDE
+        square1.position.y = SCENE_HEIGHT/2 -
+            SCENE_HEIGHT/8 -
             square1.size.height/2
         square1.addSmallSquare()
         
         let square2 = ObstacleSquare()
-        square2.position.x = main_scene.size.width + SQUARE_SIDE/2
-        square2.position.y = main_scene.size.height/2 -
-            main_scene.size.height/8 -
+        square2.position.x = SCENE_WIDTH + SQUARE_SIDE/2
+        square2.position.y = SCENE_HEIGHT/2 -
+            SCENE_HEIGHT/8 -
             square2.size.height/2 + SQUARE_SIDE
         square2.addSmallSquare()
         
@@ -109,30 +106,30 @@ class ObstacleGenerator {
         var squares = Array<ObstacleSquare>()
         
         let square = ObstacleSquare()
-        square.position.x = main_scene.size.width
-        square.position.y = main_scene.size.height/2 -
-            main_scene.size.height/8 -
+        square.position.x = SCENE_WIDTH
+        square.position.y = SCENE_HEIGHT/2 -
+            SCENE_HEIGHT/8 -
             square.size.height/2
         square.addSmallSquare()
         
         let square1 = ObstacleSquare()
-        square1.position.x = main_scene.size.width + SQUARE_SIDE
-        square1.position.y = main_scene.size.height/2 -
-            main_scene.size.height/8 -
+        square1.position.x = SCENE_WIDTH + SQUARE_SIDE
+        square1.position.y = SCENE_HEIGHT/2 -
+            SCENE_HEIGHT/8 -
             square1.size.height/2
         square1.addSmallSquare()
         
         let square2 = ObstacleSquare()
-        square2.position.x = main_scene.size.width
-        square2.position.y = main_scene.size.height/2 -
-            main_scene.size.height/8 -
+        square2.position.x = SCENE_WIDTH
+        square2.position.y = SCENE_HEIGHT/2 -
+            SCENE_HEIGHT/8 -
             square2.size.height/2 + SQUARE_SIDE
         square2.addSmallSquare()
         
         let square3 = ObstacleSquare()
-        square3.position.x = main_scene.size.width + SQUARE_SIDE
-        square3.position.y = main_scene.size.height/2 -
-            main_scene.size.height/8 -
+        square3.position.x = SCENE_WIDTH + SQUARE_SIDE
+        square3.position.y = SCENE_HEIGHT/2 -
+            SCENE_HEIGHT/8 -
             square3.size.height/2 + SQUARE_SIDE
         square3.addSmallSquare()
         
@@ -148,16 +145,16 @@ class ObstacleGenerator {
         var squares = Array<ObstacleSquare>()
         
         let square = ObstacleSquare()
-        square.position.x = main_scene.size.width
-        square.position.y = main_scene.size.height/2 -
-            main_scene.size.height/8 -
+        square.position.x = SCENE_WIDTH
+        square.position.y = SCENE_HEIGHT/2 -
+            SCENE_HEIGHT/8 -
             square.size.height/2 + SQUARE_SIDE
         square.addSmallSquare()
         
         let square1 = ObstacleSquare()
-        square1.position.x = main_scene.size.width + SQUARE_SIDE
-        square1.position.y = main_scene.size.height/2 -
-            main_scene.size.height/8 -
+        square1.position.x = SCENE_WIDTH + SQUARE_SIDE
+        square1.position.y = SCENE_HEIGHT/2 -
+            SCENE_HEIGHT/8 -
             square1.size.height/2 + SQUARE_SIDE
         square1.addSmallSquare()
         

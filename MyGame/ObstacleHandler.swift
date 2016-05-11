@@ -26,7 +26,6 @@ class ObstacleHandler {
     
     init(scene: SKScene, seconds: NSTimeInterval){
         main_scene = scene;
-        ObstacleGenerator.main_scene = main_scene
         startGeneratingWallsEvery(seconds)
         drawBaseLine()
     }
