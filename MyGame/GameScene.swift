@@ -47,7 +47,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         menu_manager.setHighscoreLabel(highscore)
         
         // create ObstacleHandler
-        obstacle_handler = ObstacleHandler(scene: self, seconds: 1)
+        obstacle_handler = ObstacleHandler(scene: self)
         
         // create Hero
         hero = Hero(scene: self)
@@ -68,7 +68,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
    
     override func update(currentTime: CFTimeInterval) {
-    
+        
+        // increase the game speed slowly
+        SQUARE_SPEED += 0.05
+        
         // update to count points
         if obstacle_handler.squares_tracker.count > 0 {
             
@@ -106,6 +109,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             hero.jumping = false;
             hero.stopRun()
             obstacle_handler.pauseGeneratingSquares()
+            obstacle_handler.act_points = 0
             menu_manager.gameOver()
             
             game_state = GameState.GAME_DEAD
@@ -129,6 +133,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // clear and set labels
         point_counter = 0
+        SQUARE_SPEED = 200.0
         menu_manager.gameStart()
         
         // show hero

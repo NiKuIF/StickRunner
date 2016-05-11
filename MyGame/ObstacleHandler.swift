@@ -19,23 +19,23 @@ class ObstacleHandler {
     private var fireing = false;
     
     // for random obstacle generation
-    var act_points = 0;
-    private var timer_divider = 2;
+    var act_points = 0; // they are always up to date
+    private var timer_divider = 3;
     private var divider_counter = 0;
     
     
-    init(scene: SKScene, seconds: NSTimeInterval){
+    init(scene: SKScene){
         main_scene = scene;
-        startGeneratingWallsEvery(seconds)
+        startGeneratingWallsEvery()
         drawBaseLine()
     }
     
-    private func startGeneratingWallsEvery(seconds: NSTimeInterval) {
+    private func startGeneratingWallsEvery() {
         
         // standard false, because we only start the timer once
         fireing = false
         
-        generationTimer = NSTimer.scheduledTimerWithTimeInterval(seconds,
+        generationTimer = NSTimer.scheduledTimerWithTimeInterval(OBST_SPEED,
                                         target: self,
                                         selector: #selector(ObstacleHandler.generateSquare),
                                         userInfo: nil,
@@ -60,10 +60,10 @@ class ObstacleHandler {
         produceObstacle()
     }
     
+    
     private func produceObstacle(){
         
-        let squared = ObstacleGenerator.prodSimpleObstacles()
-        
+        let squared = ObstacleGenerator.prodSimpleObstacles(act_points)
         
         for square in squared {
             squares.append(square)

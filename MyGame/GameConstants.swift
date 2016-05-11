@@ -26,6 +26,9 @@ let BASELINE_CATEGORY: UInt32 = 0x1 << 2
 // Square Size
 let SQUARE_SIDE: CGFloat = 30.0
 
+// Obstacle creation Speed
+let OBST_SPEED: NSTimeInterval = 0.6666666
+
 
 // ***Fixed VARS****************************************************************
 var SCENE_WIDTH: CGFloat = 0.0

@@ -19,39 +19,67 @@ class ObstaclePosition{
         createPositionPool()
     }
     
+    deinit{
+        positions.removeAll()
+    }
+    
     func getPosition() -> CGPoint{
-        let pos_index = random() % max_positions
-        let ret_pos = positions[pos_index]
-        positions.removeAtIndex(pos_index)
+        //let pos_index = random() % max_positions
+        let ret_pos = positions[max_positions-1]
+        positions.removeAtIndex(max_positions-1)
         max_positions -= 1
         return ret_pos
     }
-    
-    private func createPositionPool(){
-        //if(max_positions == 3){
-            createThreePos()
-       // }
-    }
-    
-    private func createThreePos(){
 
+    private func createPositionPool(){
+        
+        // first left
         let pos1 = CGPoint(x: SCENE_WIDTH,
                            y: SCENE_HEIGHT/2 -
                               SCENE_HEIGHT/8 -
                               SQUARE_SIDE/2)
         
+        // first right
         let pos2 = CGPoint(x: SCENE_WIDTH + SQUARE_SIDE,
                            y: SCENE_HEIGHT/2 -
                               SCENE_HEIGHT/8 -
                               SQUARE_SIDE/2)
         
-        let pos3 = CGPoint(x: SCENE_WIDTH + SQUARE_SIDE/2,
+        // second right
+        let pos3 = CGPoint(x: SCENE_WIDTH + SQUARE_SIDE,
                            y: SCENE_HEIGHT/2 -
                               SCENE_HEIGHT/8 -
                               SQUARE_SIDE/2 + SQUARE_SIDE)
         
+        // second left
+        let pos4 = CGPoint(x: SCENE_WIDTH,
+                           y: SCENE_HEIGHT/2 -
+                              SCENE_HEIGHT/8 -
+                              SQUARE_SIDE/2 + SQUARE_SIDE)
+        
+        // third middle
+        let pos5 = CGPoint(x: SCENE_WIDTH + SQUARE_SIDE/2,
+                           y: SCENE_HEIGHT/2 -
+                              SCENE_HEIGHT/8 -
+                              SQUARE_SIDE/2 + SQUARE_SIDE*2)
+        
+        // first left 2
+        let pos6 = CGPoint(x: SCENE_WIDTH - SQUARE_SIDE,
+                           y: SCENE_HEIGHT/2 -
+                              SCENE_HEIGHT/8 -
+                              SQUARE_SIDE/2)
+        // first right 2
+        let pos7 = CGPoint(x: SCENE_WIDTH + SQUARE_SIDE*2,
+                           y: SCENE_HEIGHT/2 -
+                              SCENE_HEIGHT/8 -
+                              SQUARE_SIDE/2)
+        
         positions.append(pos1)
         positions.append(pos2)
         positions.append(pos3)
+        positions.append(pos4)
+        positions.append(pos5)
+        positions.append(pos6)
+        positions.append(pos7)
     }
 }
