@@ -69,6 +69,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
    
     override func update(currentTime: CFTimeInterval) {
         
+        if( game_state != GameState.GAME_PLAY){
+            return;
+        }
+        
         // increase the game speed slowly
         SQUARE_SPEED += 0.05
         
@@ -85,12 +89,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 menu_manager.updatePointsLabel(point_counter)
             }
         }
+        
+        NSLog("hero pos: \(hero.position.x),\(hero.position.y)")
+        
+        // check if hero is in scene
+        if(hero.position.x < -hero.size.width/2.0){
+            
+            // Game Over
+            hero.jumping = false;
+            hero.stopRun()
+            obstacle_handler.pauseGeneratingSquares()
+            obstacle_handler.act_points = 0
+            menu_manager.gameOver()
+             
+            game_state = GameState.GAME_DEAD
+            
+            // check for new Highscore, if then save
+            if(point_counter > highscore){
+                // todo: congrats to new highscore or similar
+                highscore = point_counter
+                HighscoreSave.saveHighscore(highscore)
+            }
+        }
     }
     
     // SKPhysicsContactDelegate - fires when hero runs against square
+    // not needed anymore, but leave code here, maybe I need it again
     func didBeginContact(contact: SKPhysicsContact) {
 
-        var first_body, second_body: SKPhysicsBody
+       /* var first_body, second_body: SKPhysicsBody
         
         if(contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask){
             first_body = contact.bodyA
@@ -104,16 +131,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             (second_body.categoryBitMask & SQUARE_CATEGORY) != 0){
             // NSLog("SQUARE\n")
             
-            // Game Over Action
-            // add hero fall animation
-            hero.jumping = false;
-            hero.stopRun()
-            obstacle_handler.pauseGeneratingSquares()
-            obstacle_handler.act_points = 0
-            menu_manager.gameOver()
-            
-            game_state = GameState.GAME_DEAD
-            return;
+            // check for a frontal crash
+            for i in 0...6 {
+                
+                if(obstacle_handler.squares_tracker.count <= i){
+                    break;
+                }
+                
+                if(( hero.position.x - obstacle_handler.squares_tracker[i].position.x ) < 0 ){
+                    // frontal crash detected
+                    NSLog("hero pos: \(hero.position.x),\(hero.position.y)")
+                    NSLog("obst pos: \(obstacle_handler.squares_tracker[i].position.x),\(obstacle_handler.squares_tracker[i].position.y)")
+                    
+                    // Game Over Action
+                    // add hero fall animation
+                 /* hero.jumping = false;
+                    hero.stopRun()
+                    obstacle_handler.pauseGeneratingSquares()
+                    obstacle_handler.act_points = 0
+                    menu_manager.gameOver()
+                    
+                    game_state = GameState.GAME_DEAD
+                    return;*/
+                }
+            }
         }
         
         if((first_body.categoryBitMask & HERO_CATEGORY) != 0 &&
@@ -126,7 +167,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(point_counter > highscore){
             highscore = point_counter
             HighscoreSave.saveHighscore(highscore)
-        }
+        }*/
     }
     
     func startGame(){
