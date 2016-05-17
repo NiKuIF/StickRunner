@@ -24,6 +24,7 @@ class ObstacleGenerator {
     static func prodSimpleObstacles(points: Int)->Array<ObstacleSquare>{
         
         var max_obst: Int
+        var add_high: Bool = false
         
         switch points {
         case 0..<5:
@@ -36,22 +37,45 @@ class ObstacleGenerator {
             max_obst = (random() % 6) + 2; /* 2-7 */  break;
         }
         
-        return prodRandomObstacles(max_obst);
+        // if we only produce 4 or less obst add a high obstacle 
+        // when the points are above 30
+        if(max_obst <= 4 && points >= 30){
+            add_high = true
+        }
+        
+        return prodRandomObstacles(max_obst, add_high: add_high);
     }
     
-    static func prodRandomObstacles(max: Int)->Array<ObstacleSquare>{
+    static func prodRandomObstacles(max: Int, add_high: Bool)->Array<ObstacleSquare>{
+        
         var squares = Array<ObstacleSquare>()
         
-        let pos_pool = ObstaclePosition(max_count: max)
+        // add low obstacles
+        let pos_pool = ObstacleLowPosition(max_count: max)
+        let low_pos = pos_pool.getPositions()
         
-        for _ in 1...max {
-            let square = ObstacleSquare()
-            square.position = pos_pool.getPosition()
-            square.addSmallSquare()
-            squares.append(square)
+        for pos in low_pos {
+            squares.append(prodSquare(pos))
+        }
+        
+        // add high obstacles, always two high obstacles
+        if(add_high){
+            let high_obst = ObstacleHighPosition()
+            let high_pos: Array<CGPoint> = high_obst.getPositions()
+            
+            for pos in high_pos {
+                squares.append(prodSquare(pos))
+            }
         }
         
         return squares;
+    }
+    
+    static func prodSquare(pos: CGPoint)->ObstacleSquare{
+        let square = ObstacleSquare()
+        square.position = pos
+        square.addSmallSquare()
+        return square
     }
     
   }
