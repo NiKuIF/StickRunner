@@ -63,32 +63,22 @@ class Hero: SKSpriteNode {
     
     func jumpPhysics(){
         
-        if(jumping){
-            if(!checkIfResetJumpVars()){
-                return;
-            }
-        } else {
-            checkIfResetJumpVars()
-        }
+        if(jumping){ return; }
         
         jump_count += 1
         physicsBody?.applyImpulse(CGVectorMake(0, 80))
         
+        // == 2 for double jump
         if( jump_count == 2){
             jumping = true
         }
+        DebugWindow.printJump(jump_count);
     }
     
-    private func checkIfResetJumpVars()->Bool{
-        // check if hero is back on the baseline
-        // todo: not hardcoded 308.757
-        if(self.position.y < 315 && self.position.y > 300){
-            //NSLog("back to baseline")
-            jumping = false
-            jump_count = 0
-            return true;
-        }
-        return false;
+    func resetJumpVars() {
+        jumping = false;
+        jump_count = 0;
+        DebugWindow.printJump(jump_count);
     }
     
     func addToScene(){

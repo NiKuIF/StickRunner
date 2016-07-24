@@ -84,7 +84,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-        // NSLog("hero pos: \(hero.position.x),\(hero.position.y)")
+        DebugWindow.printHeroPos(hero.position.x, y_pos: hero.position.y);
         
         // check if hero is in scene
         if(hero.position.x < -hero.size.width/2.0){
@@ -111,6 +111,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // not needed anymore, but leave code here, maybe I need it again
     func didBeginContact(contact: SKPhysicsContact) {
 
+        // reset the jump ability when we touch a object
+        hero.resetJumpVars();
+        
        /* var first_body, second_body: SKPhysicsBody
         
         if(contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask){

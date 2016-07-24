@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" text="DEBUG WINDOW \n Debug Window " textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5Q-SA-2zp">
+                            <textView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" text="DEBUG WINDOW for testing purposes only" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5Q-SA-2zp">
                                 <rect key="frame" x="270" y="0.0" width="330" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration">
