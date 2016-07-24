@@ -8,16 +8,10 @@
 
 import SpriteKit
 
-enum GameState {
-    case START_SCREEN
-    case GAME_PLAY
-    case GAME_DEAD
-}
-
 // they are global, so that we can handle when we switch to 
 // background or became active again
 var obstacle_handler: ObstacleHandler!
-var game_state = GameState.START_SCREEN
+var gsc = GameStateClass()
 
 // SKPhysicsContactDelegate
 // for physics action, like collision detection
@@ -56,20 +50,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // fired every screen touch
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
        
-        if(game_state == GameState.START_SCREEN){
+        if( gsc.game_state == GAME_STATE.START_SCREEN){
             startGame()
         }
-        else if(game_state == GameState.GAME_PLAY){
+        else if( gsc.game_state == GAME_STATE.GAME_PLAY){
             hero.jumpPhysics()
         }
-        else if( game_state == GameState.GAME_DEAD){
+        else if( gsc.game_state == GAME_STATE.GAME_DEAD){
             backToMenu(touches)
         }
     }
    
     override func update(currentTime: CFTimeInterval) {
         
-        if( game_state != GameState.GAME_PLAY){
+        if( gsc.game_state != GAME_STATE.GAME_PLAY){
             return;
         }
         
@@ -90,7 +84,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-        NSLog("hero pos: \(hero.position.x),\(hero.position.y)")
+        // NSLog("hero pos: \(hero.position.x),\(hero.position.y)")
         
         // check if hero is in scene
         if(hero.position.x < -hero.size.width/2.0){
@@ -102,7 +96,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             obstacle_handler.act_points = 0
             menu_manager.gameOver()
              
-            game_state = GameState.GAME_DEAD
+            gsc.game_state = GAME_STATE.GAME_DEAD; 
             
             // check for new Highscore, if then save
             if(point_counter > highscore){
@@ -184,7 +178,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // start wall generation
         obstacle_handler.continueSquareGeneration()
         
-        game_state = GameState.GAME_PLAY
+        gsc.game_state = GAME_STATE.GAME_PLAY
+    
+        // debug prints
+        // debug_window.printGameState(game_state.value());
     }
     
     func backToMenu(touches: Set<UITouch>){
@@ -198,7 +195,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 menu_manager.setHighscoreLabel(highscore)
                 hero.removeFromScene()
                 obstacle_handler.deleteAllSquares()
-                game_state = GameState.START_SCREEN
+                gsc.game_state = GAME_STATE.START_SCREEN
             }
         }
     }

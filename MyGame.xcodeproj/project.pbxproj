@@ -25,6 +25,8 @@
 		2E96360E1CD63610007779AD /* HighscoreSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E96360D1CD63610007779AD /* HighscoreSave.swift */; };
 		2EB430A31CCED3B7008C1605 /* ObstacleSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB430A21CCED3B7008C1605 /* ObstacleSquare.swift */; };
 		2EB430A51CCEDA1A008C1605 /* GameConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB430A41CCEDA1A008C1605 /* GameConstants.swift */; };
+		6EBA2C651D4505EF00525A2A /* DebugWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBA2C641D4505EF00525A2A /* DebugWindow.swift */; };
+		6EBA2C671D4515D700525A2A /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBA2C661D4515D700525A2A /* GameState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		2E96360D1CD63610007779AD /* HighscoreSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoreSave.swift; sourceTree = "<group>"; };
 		2EB430A21CCED3B7008C1605 /* ObstacleSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleSquare.swift; sourceTree = "<group>"; };
 		2EB430A41CCEDA1A008C1605 /* GameConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameConstants.swift; sourceTree = "<group>"; };
+		6EBA2C641D4505EF00525A2A /* DebugWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugWindow.swift; sourceTree = "<group>"; };
+		6EBA2C661D4515D700525A2A /* GameState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,8 @@
 				2E5CE8561CCD4FD7004746C0 /* MenuManager */,
 				2E69CF861CCCEF730058B069 /* WinImages.atlas */,
 				2E494ED91CE2578400D69C2A /* AppIcons */,
+				6EBA2C641D4505EF00525A2A /* DebugWindow.swift */,
+				6EBA2C661D4515D700525A2A /* GameState.swift */,
 				2E69CF721CCCEE650058B069 /* GameScene.swift */,
 				2E69CF741CCCEE650058B069 /* GameViewController.swift */,
 				2EB430A41CCEDA1A008C1605 /* GameConstants.swift */,
@@ -214,8 +220,10 @@
 				2E96360E1CD63610007779AD /* HighscoreSave.swift in Sources */,
 				2E5CE8601CCD5FD4004746C0 /* ObstacleHandler.swift in Sources */,
 				2EB430A31CCED3B7008C1605 /* ObstacleSquare.swift in Sources */,
+				6EBA2C651D4505EF00525A2A /* DebugWindow.swift in Sources */,
 				2E625DCA1CEBCB2E004F2C63 /* ObstacleLowPosition.swift in Sources */,
 				2E5CE85B1CCD597B004746C0 /* Hero.swift in Sources */,
+				6EBA2C671D4515D700525A2A /* GameState.swift in Sources */,
 				2E5CE8581CCD4FF4004746C0 /* MenuManager.swift in Sources */,
 				2E625DC81CEBCAF8004F2C63 /* ObstacleHighPosition.swift in Sources */,
 				2E69CF731CCCEE650058B069 /* GameScene.swift in Sources */,

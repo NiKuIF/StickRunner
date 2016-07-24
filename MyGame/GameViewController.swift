@@ -11,8 +11,16 @@ import SpriteKit
 
 class GameViewController: UIViewController {
     
+    // only for debug purposes
+    @IBOutlet weak var debug_view: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // setup debug window, true = enable, false = disable
+        
+        DebugWindow.enable = DEBUG_WINDOW;
+        DebugWindow.debug_window = debug_view;
         
         let scene = GameScene(fileNamed: "GameScene")
         
@@ -52,8 +60,8 @@ class GameViewController: UIViewController {
     @objc func obMethResignActive(notific: NSNotification) {
         // NSLog("obMethResignActive")
         if( obstacle_handler == nil ||
-            game_state == GameState.START_SCREEN ||
-            game_state == GameState.GAME_DEAD){
+            gsc.game_state == GAME_STATE.START_SCREEN ||
+            gsc.game_state == GAME_STATE.GAME_DEAD){
             return; }
         
         obstacle_handler.pauseGenerating()
@@ -62,8 +70,8 @@ class GameViewController: UIViewController {
     @objc func obMethDidBecomeActive(notific: NSNotification) {
         //NSLog("obMethDidBecomeActive")
         if( obstacle_handler == nil ||
-            game_state == GameState.START_SCREEN ||
-            game_state == GameState.GAME_DEAD){
+            gsc.game_state == GAME_STATE.START_SCREEN ||
+            gsc.game_state == GAME_STATE.GAME_DEAD){
             return; }
         
         obstacle_handler.continueSquareGeneration()
