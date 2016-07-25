@@ -24,6 +24,11 @@ class DebugWindow {
     private static var hp_str = "HeroPos: (0.00, 0.00)";
     private static var jm_str = "Jmp_Cnt: 0";
     
+    
+    static func clearScreen(){
+        debug_window.text = "";
+    }
+    
     static func printGameState(state: GAME_STATE) {
         if(!enable) { return;}
         
@@ -61,7 +66,8 @@ class DebugWindow {
     }
     
     static func printJump(count: Int) {
-    
+        if(!enable) { return;}
+
         jm_str = "Jmp_Cnt: " + String(count);
         debug_window.text = gs_str + "\n" + hp_str + "\n" + jm_str;
         

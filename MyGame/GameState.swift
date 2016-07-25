@@ -13,12 +13,6 @@
 
 import Foundation
 
-enum GAME_STATE {
-    case START_SCREEN
-    case GAME_PLAY
-    case GAME_DEAD
-}
-
 class GameStateClass {
     
     var game_state: GAME_STATE = GAME_STATE.START_SCREEN {

@@ -87,23 +87,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         DebugWindow.printHeroPos(hero.position.x, y_pos: hero.position.y);
         
         // check if hero is in scene
-        if(hero.position.x < -hero.size.width/2.0){
-            
-            // Game Over
-            hero.jumping = false;
-            hero.stopRun()
-            obstacle_handler.pauseGeneratingSquares()
-            obstacle_handler.act_points = 0
-            menu_manager.gameOver()
-             
-            gsc.game_state = GAME_STATE.GAME_DEAD; 
-            
-            // check for new Highscore, if then save
-            if(point_counter > highscore){
-                // todo: congrats to new highscore or similar
-                highscore = point_counter
-                HighscoreSave.saveHighscore(highscore)
-            }
+        if((hero.position.x < -hero.size.width/2.0) || (hero.position.y < 0)){
+            gameOver();
         }
     }
     
@@ -114,57 +99,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // reset the jump ability when we touch a object
         hero.resetJumpVars();
         
-       /* var first_body, second_body: SKPhysicsBody
         
-        if(contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask){
-            first_body = contact.bodyA
-            second_body = contact.bodyB
-        } else {
-            first_body = contact.bodyB
-            second_body = contact.bodyA
+        // check if we hit a red square -> forbidden
+        var object_body: SKPhysicsBody;
+        
+        // check if bodyA or bodyB is the Hero
+        if(contact.bodyA.categoryBitMask & HERO_CATEGORY != 0) {
+            object_body = contact.bodyB;
+        }
+        else {
+            object_body = contact.bodyA;
         }
         
-        if((first_body.categoryBitMask & HERO_CATEGORY) != 0 &&
-            (second_body.categoryBitMask & SQUARE_CATEGORY) != 0){
-            // NSLog("SQUARE\n")
-            
-            // check for a frontal crash
-            for i in 0...6 {
-                
-                if(obstacle_handler.squares_tracker.count <= i){
-                    break;
-                }
-                
-                if(( hero.position.x - obstacle_handler.squares_tracker[i].position.x ) < 0 ){
-                    // frontal crash detected
-                    NSLog("hero pos: \(hero.position.x),\(hero.position.y)")
-                    NSLog("obst pos: \(obstacle_handler.squares_tracker[i].position.x),\(obstacle_handler.squares_tracker[i].position.y)")
-                    
-                    // Game Over Action
-                    // add hero fall animation
-                 /* hero.jumping = false;
-                    hero.stopRun()
-                    obstacle_handler.pauseGeneratingSquares()
-                    obstacle_handler.act_points = 0
-                    menu_manager.gameOver()
-                    
-                    game_state = GameState.GAME_DEAD
-                    return;*/
-                }
-            }
+        if(object_body.categoryBitMask & RED_SQUARE_CATEGORY != 0) {
+            gameOver();
         }
-        
-        if((first_body.categoryBitMask & HERO_CATEGORY) != 0 &&
-            (second_body.categoryBitMask & BASELINE_CATEGORY) != 0){
-            // NSLog("BASELINE\n")
-            // nothing happend, just that he didn't fall to nirvana
+        else if (object_body.categoryBitMask & BLUE_SQUARE_CATEGORY != 0) {
+            hero.jumpPhysics()
         }
-        
-        // check for new Highscore, if then save
-        if(point_counter > highscore){
-            highscore = point_counter
-            HighscoreSave.saveHighscore(highscore)
-        }*/
     }
     
     func startGame(){
@@ -182,9 +134,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         obstacle_handler.continueSquareGeneration()
         
         gsc.game_state = GAME_STATE.GAME_PLAY
+    }
     
-        // debug prints
-        // debug_window.printGameState(game_state.value());
+    func gameOver() {
+        // Game Over
+        hero.jumping = false;
+        hero.stopRun()
+        obstacle_handler.pauseGeneratingSquares()
+        obstacle_handler.act_points = 0
+        menu_manager.gameOver()
+        
+        gsc.game_state = GAME_STATE.GAME_DEAD;
+        
+        // check for new Highscore, if then save
+        if(point_counter > highscore){
+            // todo: congrats to new highscore or similar
+            highscore = point_counter
+            HighscoreSave.saveHighscore(highscore)
+        }
     }
     
     func backToMenu(touches: Set<UITouch>){

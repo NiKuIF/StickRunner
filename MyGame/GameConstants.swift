@@ -10,6 +10,21 @@ import Foundation
 import UIKit
 
 
+// ***ENUMS*********************************************************************
+
+enum GAME_STATE {
+    case START_SCREEN
+    case GAME_PLAY
+    case GAME_DEAD
+}
+
+enum SQUARE_TYPE {
+    case DEFAULT
+    case RED
+    case BLUE
+}
+
+
 // ***CONSTANTS*****************************************************************
 
 // Font Sizes
@@ -19,9 +34,11 @@ let SMALL_FONTSIZE: CGFloat = 40.0
 let TEST_FONTSIZE: CGFloat = 30.0
 
 // Collision Detection
-let HERO_CATEGORY: UInt32 = 0x1 << 0
-let SQUARE_CATEGORY: UInt32 = 0x1 << 1
-let BASELINE_CATEGORY: UInt32 = 0x1 << 2
+let HERO_CATEGORY: UInt32 = (0x1 << 0)          // 1
+let SQUARE_CATEGORY: UInt32 = (0x1 << 1)        // 2
+let BASELINE_CATEGORY: UInt32 = (0x1 << 2)      // 4
+let RED_SQUARE_CATEGORY: UInt32 = (0x1 << 3)    // 8
+let BLUE_SQUARE_CATEGORY: UInt32 = (0x1 << 4)   // 16
 
 // Square Size
 let SQUARE_SIDE: CGFloat = 30.0

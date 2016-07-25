@@ -14,8 +14,12 @@
 import Foundation
 import SpriteKit
 
+
+
 class ObstacleGenerator {
    
+    static var wall_counter = 0;
+    
 
     /*  Main Generator Method
      *  Creates Obstacles with attention
@@ -43,7 +47,23 @@ class ObstacleGenerator {
             add_high = true
         }
         
+        if(points >= 50) {
+            wall_counter += 1;
+            
+            if(wall_counter >= 4) {
+                wall_counter = 0;
+                return prodWallObstacle();
+            }
+            else {
+                wall_counter += 1;
+            }
+        }
+        
         return prodRandomObstacles(max_obst, add_high: add_high);
+    }
+    
+    private static func prodWallObstacle() ->Array<ObstacleSquare> {
+        return ObstacleJumpPosition().getSquares()
     }
     
     static func prodRandomObstacles(max: Int, add_high: Bool)->Array<ObstacleSquare>{
@@ -64,18 +84,19 @@ class ObstacleGenerator {
             let high_pos: Array<CGPoint> = high_obst.getPositions()
             
             for pos in high_pos {
-                squares.append(prodSquare(pos))
+                squares.append(prodSquare(pos, type: SQUARE_TYPE.RED))
             }
         }
         
         return squares;
     }
     
-    static func prodSquare(pos: CGPoint)->ObstacleSquare{
-        let square = ObstacleSquare()
+    static func prodSquare(pos: CGPoint, type: SQUARE_TYPE = SQUARE_TYPE.DEFAULT)->ObstacleSquare{
+        
+        let square = ObstacleSquare(type: type)
         square.position = pos
         square.addSmallSquare()
-        return square
+        return square;
     }
     
   }

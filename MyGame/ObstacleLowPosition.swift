@@ -82,7 +82,7 @@ class ObstacleLowPosition{
                            y: SCENE_HEIGHT/2 -
                             SCENE_HEIGHT/8 -
                             SQUARE_SIDE/2)
-        
+  
         positions.append(pos1)
         positions.append(pos2)
         positions.append(pos3)

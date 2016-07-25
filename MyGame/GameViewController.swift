@@ -17,11 +17,6 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // setup debug window, true = enable, false = disable
-        
-        DebugWindow.enable = DEBUG_WINDOW;
-        DebugWindow.debug_window = debug_view;
-        
         let scene = GameScene(fileNamed: "GameScene")
         
         if (scene != nil) {
@@ -43,6 +38,11 @@ class GameViewController: UIViewController {
             
             skView.presentScene(scene)
         }
+        
+        // setup debug window, true = enable, false = disable
+        DebugWindow.enable = DEBUG_WINDOW;
+        DebugWindow.debug_window = debug_view;
+        DebugWindow.clearScreen();        
         
         // resign active Observer
         NSNotificationCenter.defaultCenter().addObserver(self,
