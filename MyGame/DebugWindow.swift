@@ -20,28 +20,28 @@ class DebugWindow {
     static var debug_window: UITextView!;
     
     // temp save strings
-    private static var gs_str = "GameState: start";
-    private static var hp_str = "HeroPos: (0.00, 0.00)";
-    private static var jm_str = "Jmp_Cnt: 0";
+    fileprivate static var gs_str = "GameState: start";
+    fileprivate static var hp_str = "HeroPos: (0.00, 0.00)";
+    fileprivate static var jm_str = "Jmp_Cnt: 0";
     
     
     static func clearScreen(){
         debug_window.text = "";
     }
     
-    static func printGameState(state: GAME_STATE) {
+    static func printGameState(_ state: GAME_STATE) {
         if(!enable) { return;}
         
         gs_str = "GameState: ";
         
         switch state {
-        case .GAME_PLAY:
+        case .game_PLAY:
             gs_str += "PLAY";
             break
-        case .GAME_DEAD:
+        case .game_DEAD:
             gs_str += "DEAD";
             break
-        case .START_SCREEN:
+        case .start_SCREEN:
             gs_str += "Start_Screen";
             break
         default:
@@ -51,27 +51,27 @@ class DebugWindow {
         debug_window.text = gs_str + "\n" + hp_str + "\n" + jm_str;
         
         // you have to set the color after every write -> NSMutableString
-        debug_window.textColor = UIColor.brownColor();
+        debug_window.textColor = UIColor.brown;
     }
     
-    static func printHeroPos(x_pos: CGFloat, y_pos: CGFloat) {
+    static func printHeroPos(_ x_pos: CGFloat, y_pos: CGFloat) {
         if(!enable) { return;}
         
-        hp_str = "HeroPos: (" + String(x_pos) + ", " + String(y_pos) + ")";
+        hp_str = "HeroPos: (" + String(describing: x_pos) + ", " + String(describing: y_pos) + ")";
         
         debug_window.text = gs_str + "\n" + hp_str + "\n" + jm_str;
         
         // you have to set the color after every write -> NSMutableString
-        debug_window.textColor = UIColor.brownColor();
+        debug_window.textColor = UIColor.brown;
     }
     
-    static func printJump(count: Int) {
+    static func printJump(_ count: Int) {
         if(!enable) { return;}
 
         jm_str = "Jmp_Cnt: " + String(count);
         debug_window.text = gs_str + "\n" + hp_str + "\n" + jm_str;
         
         // you have to set the color after every write -> NSMutableString
-        debug_window.textColor = UIColor.brownColor();
+        debug_window.textColor = UIColor.brown;
     }
 }

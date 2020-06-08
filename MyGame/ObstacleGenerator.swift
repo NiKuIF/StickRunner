@@ -25,7 +25,7 @@ class ObstacleGenerator {
      *  Creates Obstacles with attention
      *  to the current points
      */
-    static func prodSimpleObstacles(points: Int)->Array<ObstacleSquare>{
+    static func prodSimpleObstacles(_ points: Int)->Array<ObstacleSquare>{
         
         var max_obst: Int
         var add_high: Bool = false
@@ -34,11 +34,11 @@ class ObstacleGenerator {
         case 0..<5:
             max_obst = 1; break;
         case 5..<15:
-            max_obst = (random() % 3) + 1; /* 1-3 */ break;
+            max_obst = (Int)(arc4random() % 3) + 1; /* 1-3 */ break;
         case 15..<25:
-            max_obst = (random() % 4) + 2; /* 2-5 */  break;
+            max_obst = (Int)(arc4random() % 4) + 2; /* 2-5 */  break;
         default:
-            max_obst = (random() % 6) + 2; /* 2-7 */  break;
+            max_obst = (Int)(arc4random() % 6) + 2; /* 2-7 */  break;
         }
         
         // if we only produce 4 or less obst add a high obstacle 
@@ -62,11 +62,11 @@ class ObstacleGenerator {
         return prodRandomObstacles(max_obst, add_high: add_high);
     }
     
-    private static func prodWallObstacle() ->Array<ObstacleSquare> {
+    fileprivate static func prodWallObstacle() ->Array<ObstacleSquare> {
         return ObstacleJumpPosition().getSquares()
     }
     
-    static func prodRandomObstacles(max: Int, add_high: Bool)->Array<ObstacleSquare>{
+    static func prodRandomObstacles(_ max: Int, add_high: Bool)->Array<ObstacleSquare>{
         
         var squares = Array<ObstacleSquare>()
         
@@ -84,14 +84,18 @@ class ObstacleGenerator {
             let high_pos: Array<CGPoint> = high_obst.getPositions()
             
             for pos in high_pos {
-                squares.append(prodSquare(pos, type: SQUARE_TYPE.RED))
+                squares.append(prodSquare(pos, type: SQUARE_TYPE.red))
             }
+            
+            // new syntax
+            //high_pos.forEach{ squares.append(prodSquare($0, type: SQUARE_TYPE.red)) }
+            
         }
         
         return squares;
     }
     
-    static func prodSquare(pos: CGPoint, type: SQUARE_TYPE = SQUARE_TYPE.DEFAULT)->ObstacleSquare{
+    static func prodSquare(_ pos: CGPoint, type: SQUARE_TYPE = SQUARE_TYPE.default)->ObstacleSquare{
         
         let square = ObstacleSquare(type: type)
         square.position = pos

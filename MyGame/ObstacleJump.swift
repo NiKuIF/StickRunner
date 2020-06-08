@@ -19,7 +19,7 @@ import SpriteKit
 
 class ObstacleJumpPosition{
     
-    private var squares = Array<ObstacleSquare>()
+    fileprivate var squares = Array<ObstacleSquare>()
     
     init(){
         
@@ -39,8 +39,8 @@ class ObstacleJumpPosition{
         
         let pos = CGPoint(x: SCENE_WIDTH + SQUARE_SIDE, y: SCENE_HEIGHT/2 - 10);
             
-        let square = ObstacleSquare(type: SQUARE_TYPE.DEFAULT,
-                                    size: CGSizeMake(SQUARE_SIDE, SQUARE_SIDE * 8));
+        let square = ObstacleSquare(type: SQUARE_TYPE.default,
+                                    size: CGSize(width: SQUARE_SIDE, height: SQUARE_SIDE * 8));
         
         square.position = pos
         square.addSmallSquare()
@@ -54,7 +54,7 @@ class ObstacleJumpPosition{
                             SCENE_HEIGHT/8 -
                             SQUARE_SIDE/2)
         
-        let square = ObstacleSquare(type: SQUARE_TYPE.BLUE)
+        let square = ObstacleSquare(type: SQUARE_TYPE.blue)
         square.position = pos
         square.addSmallSquare()
         squares.append(square);

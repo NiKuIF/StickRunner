@@ -11,17 +11,17 @@ import SpriteKit
 
 class ObstacleHandler {
     
-    private var main_scene: SKScene
-    private var generationTimer: NSTimer?
+    fileprivate var main_scene: SKScene
+    fileprivate var generationTimer: Timer?
     var squares = Array<ObstacleSquare>()
     var squares_tracker = Array<ObstacleSquare>() // to count points
     
-    private var fireing = false;
+    fileprivate var fireing = false;
     
     // for random obstacle generation
     var act_points = 0; // they are always up to date
-    private var timer_divider = 3;
-    private var divider_counter = 0;
+    fileprivate var timer_divider = 3;
+    fileprivate var divider_counter = 0;
     
     
     init(scene: SKScene){
@@ -30,12 +30,12 @@ class ObstacleHandler {
         drawBaseLine()
     }
     
-    private func startGeneratingWallsEvery() {
+    fileprivate func startGeneratingWallsEvery() {
         
         // standard false, because we only start the timer once
         fireing = false
         
-        generationTimer = NSTimer.scheduledTimerWithTimeInterval(OBST_SPEED,
+        generationTimer = Timer.scheduledTimer(timeInterval: OBST_SPEED,
                                         target: self,
                                         selector: #selector(ObstacleHandler.generateSquare),
                                         userInfo: nil,
@@ -61,7 +61,7 @@ class ObstacleHandler {
     }
     
     
-    private func produceObstacle(){
+    fileprivate func produceObstacle(){
         
         let squared = ObstacleGenerator.prodSimpleObstacles(act_points)
         
@@ -114,17 +114,17 @@ class ObstacleHandler {
         squares_tracker.removeAll()
     }
     
-    private func drawBaseLine(){
-        let base_line = SKSpriteNode(color: UIColor.blackColor(),
-                                     size: CGSizeMake(main_scene.size.width, 4))
-        base_line.position = CGPointMake(CGRectGetMidX(main_scene.frame),
-                                         CGRectGetMidY(main_scene.frame) -
-                                            CGRectGetMidY(main_scene.frame)/3)
+    fileprivate func drawBaseLine(){
+        let base_line = SKSpriteNode(color: UIColor.black,
+                                     size: CGSize(width: main_scene.size.width, height: 4))
+        base_line.position = CGPoint(x: main_scene.frame.midX,
+                                         y: main_scene.frame.midY -
+                                            main_scene.frame.midY/3)
         
-        base_line.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(main_scene.size.width, 4))
+        base_line.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: main_scene.size.width, height: 4))
         base_line.physicsBody?.categoryBitMask = BASELINE_CATEGORY
         base_line.physicsBody?.contactTestBitMask = HERO_CATEGORY
-        base_line.physicsBody?.dynamic = false
+        base_line.physicsBody?.isDynamic = false
         
         main_scene.addChild(base_line)
     }

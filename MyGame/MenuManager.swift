@@ -21,12 +21,12 @@ class MenuManager {
     
     var lb_test = SKLabelNode(fontNamed: "Chalkduster")
     
-    private var main_scene: SKScene
+    fileprivate var main_scene: SKScene
     
     
     init(scene: SKScene) {
         main_scene = scene
-        setBackGroundColor(UIColor.blackColor())
+        setBackGroundColor(UIColor.black)
     }
     
     func setupFirstStart(){
@@ -40,85 +40,85 @@ class MenuManager {
         lb_main.text = ""
         lb_points.text = "Points: 0"
         lb_highscore.text = ""
-        setBackGroundColor(UIColor.whiteColor())
+        setBackGroundColor(UIColor.white)
     }
     
     func gameBackToMenu(){
-        setBackGroundColor(UIColor.blackColor())
+        setBackGroundColor(UIColor.black)
         lb_main.text = "StickRunner"
-        lb_main.fontColor = UIColor.whiteColor()
+        lb_main.fontColor = UIColor.white
         lb_back.text = ""
         lb_points.text = ""
     }
     
     func gameOver(){
-        lb_main.fontColor = UIColor.blackColor()
+        lb_main.fontColor = UIColor.black
         lb_main.text = "Game Over"
         lb_back.text = "Back"
     }
     
-    func setHighscoreLabel(highscore: NSInteger){
+    func setHighscoreLabel(_ highscore: NSInteger){
         lb_highscore.text = "Highscore: \(highscore)"
     }
     
-    func updatePointsLabel(points: NSInteger){
+    func updatePointsLabel(_ points: NSInteger){
         lb_points.text = "Points: \(points)"
     }
     
-    func setTestLabelText(content: String){
+    func setTestLabelText(_ content: String){
         lb_test.text = content;
     }
     
     func addTestLabel(){
         lb_test.fontSize = TEST_FONTSIZE
-        lb_test.fontColor = UIColor.redColor()
+        lb_test.fontColor = UIColor.red
         lb_test.position = CGPoint(
-            x:(CGRectGetMidX(main_scene.frame) + CGRectGetMidX(main_scene.frame)/2),
-            y:(CGRectGetMidY(main_scene.frame) + CGRectGetMidY(main_scene.frame)/2))
+            x:(main_scene.frame.midX + main_scene.frame.midX/2),
+            y:(main_scene.frame.midY + main_scene.frame.midY/2))
         main_scene.addChild(lb_test)
     }
     
-    private func setupMainLabel(){
+    fileprivate func setupMainLabel(){
         lb_main.text = "StickRunner"
         lb_main.fontSize = BIG_FONTSIZE
-        lb_main.fontColor = UIColor.whiteColor()
+        lb_main.fontColor = UIColor.white
         lb_main.position = CGPoint(
-            x:CGRectGetMidX(main_scene.frame),
-            y:CGRectGetMidY(main_scene.frame))
+            x:main_scene.frame.midX,
+            y:main_scene.frame.midY)
         main_scene.addChild(lb_main)
     }
     
-    private func setupBackLabel(){
+    fileprivate func setupBackLabel(){
         lb_back.text = ""
         lb_back.fontSize = MIDDLE_FONTSIZE
-        lb_back.fontColor = UIColor.blackColor()
+        lb_back.fontColor = UIColor.black
         lb_back.position = CGPoint(
-            x:(CGRectGetMidX(main_scene.frame) - CGRectGetMidX(main_scene.frame)/2),
-            y:(CGRectGetMidY(main_scene.frame) + CGRectGetMidY(main_scene.frame)/2))
+            x:(main_scene.frame.midX - main_scene.frame.midX/2),
+            y:(main_scene.frame.midY + main_scene.frame.midY/2))
         main_scene.addChild(lb_back)
     }
     
-    private func setupPointsLabel(){
+    fileprivate func setupPointsLabel(){
         lb_points.text = ""
         lb_points.fontSize = SMALL_FONTSIZE
-        lb_points.fontColor = UIColor.blackColor()
+        lb_points.fontColor = UIColor.black
         lb_points.position = CGPoint(
-            x:(CGRectGetMidX(main_scene.frame) + CGRectGetMidX(main_scene.frame)/2),
-            y:(CGRectGetMidY(main_scene.frame) + CGRectGetMidY(main_scene.frame)/2))
+            x:(main_scene.frame.midX + main_scene.frame.midX/2),
+            y:(main_scene.frame.midY + main_scene.frame.midY/2))
         main_scene.addChild(lb_points)
     }
     
-    private func setupHighScoreLabel(){
+    fileprivate func setupHighScoreLabel(){
         lb_highscore.text = ""
         lb_highscore.fontSize = SMALL_FONTSIZE
-        lb_highscore.fontColor = UIColor.whiteColor()
+        lb_highscore.fontColor = UIColor.white
         lb_highscore.position = CGPoint(
-            x:(CGRectGetMidX(main_scene.frame) - CGRectGetMidX(main_scene.frame)/2),
-            y:(CGRectGetMidY(main_scene.frame) + CGRectGetMidY(main_scene.frame)/2))
+            x:(main_scene.frame.midX - main_scene.frame.midX/2),
+            y:(main_scene.frame.midY + main_scene.frame.midY/2))
         main_scene.addChild(lb_highscore)
     }
     
-    private func setBackGroundColor(color: UIColor){
+    fileprivate func setBackGroundColor(_ color: UIColor){
         //backgroundColor = UIColor(red: 159.0/255.0, green: 201.0/255.0, blue: 244.0/255.0, alpha: 1.0)
         main_scene.backgroundColor = color
     }    

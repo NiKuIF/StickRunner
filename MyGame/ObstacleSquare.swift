@@ -17,34 +17,34 @@ class ObstacleSquare: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(type: SQUARE_TYPE = SQUARE_TYPE.DEFAULT,
-         size: CGSize = CGSizeMake(SQUARE_SIDE, SQUARE_SIDE)){
+    init(type: SQUARE_TYPE = SQUARE_TYPE.default,
+         size: CGSize = CGSize(width: SQUARE_SIDE, height: SQUARE_SIDE)){
         
         square_type = type;
         
         // let size_ = size;
-        super.init(texture: nil, color: UIColor.blackColor(), size: size)
+        super.init(texture: nil, color: UIColor.black, size: size)
         
         loadPhysicsBodyWithSize(size)
         startMoving()
     }
     
     init(child: Bool,
-         type: SQUARE_TYPE = SQUARE_TYPE.DEFAULT,
-         size: CGSize = CGSizeMake(SQUARE_SIDE, SQUARE_SIDE)) {
+         type: SQUARE_TYPE = SQUARE_TYPE.default,
+         size: CGSize = CGSize(width: SQUARE_SIDE, height: SQUARE_SIDE)) {
         
         square_type = type;
         
-        let size_ = CGSizeMake(size.width - 8, size.height - 8)
+        let size_ = CGSize(width: size.width - 8, height: size.height - 8)
         var child_color: UIColor;
         
         switch type {
-        case .RED:
-            child_color = UIColor.redColor(); break;
-        case .BLUE:
-            child_color = UIColor.blueColor(); break;
-        case .DEFAULT:
-            child_color = UIColor.whiteColor(); break;
+        case .red:
+            child_color = UIColor.red; break;
+        case .blue:
+            child_color = UIColor.blue; break;
+        case .default:
+            child_color = UIColor.white; break;
         }
         
         super.init(texture: nil, color: child_color, size: size_)
@@ -58,22 +58,22 @@ class ObstacleSquare: SKSpriteNode {
         self.removeFromParent()
     }
     
-    func loadPhysicsBodyWithSize(size: CGSize) {
-        physicsBody = SKPhysicsBody(rectangleOfSize: size)
+    func loadPhysicsBodyWithSize(_ size: CGSize) {
+        physicsBody = SKPhysicsBody(rectangleOf: size)
         
-        if(square_type == SQUARE_TYPE.DEFAULT) {
+        if(square_type == SQUARE_TYPE.default) {
             physicsBody?.categoryBitMask = SQUARE_CATEGORY
         }
-        else if(square_type == SQUARE_TYPE.RED) {
+        else if(square_type == SQUARE_TYPE.red) {
             physicsBody?.categoryBitMask = RED_SQUARE_CATEGORY
         }
-        else if(square_type == SQUARE_TYPE.BLUE) {
+        else if(square_type == SQUARE_TYPE.blue) {
             physicsBody?.categoryBitMask = BLUE_SQUARE_CATEGORY
         }        
         
         physicsBody?.contactTestBitMask = HERO_CATEGORY
         physicsBody?.affectedByGravity = false
-        physicsBody?.dynamic = false // static objects
+        physicsBody?.isDynamic = false // static objects
     }
     
     func addSmallSquare() {
@@ -82,8 +82,8 @@ class ObstacleSquare: SKSpriteNode {
     }
     
     func startMoving() {
-        let moveLeft = SKAction.moveByX(-SQUARE_SPEED, y: 0, duration: 1)
-        runAction(SKAction.repeatActionForever(moveLeft))
+        let moveLeft = SKAction.moveBy(x: -SQUARE_SPEED, y: 0, duration: 1)
+        run(SKAction.repeatForever(moveLeft))
     }
     
     func stopMoving() {

@@ -12,9 +12,9 @@ import SpriteKit
 class Hero: SKSpriteNode {
     
     // private members
-    private var TextureAtlas =  SKTextureAtlas()
-    private var TextureArray = [SKTexture]()
-    private var main_scene: SKScene
+    fileprivate var TextureAtlas =  SKTextureAtlas()
+    fileprivate var TextureArray = [SKTexture]()
+    fileprivate var main_scene: SKScene
     
     // variables for jumping, also a double jump is possible
     var jumping = false;
@@ -36,8 +36,8 @@ class Hero: SKSpriteNode {
             TextureArray.append(SKTexture(imageNamed: "win_\(i).png"))
         }
         
-        let size = CGSizeMake(60, 120)
-        super.init(texture: TextureArray[0], color: UIColor.clearColor(), size: size)
+        let size = CGSize(width: 60, height: 120)
+        super.init(texture: TextureArray[0], color: UIColor.clear, size: size)
         
         position = CGPoint(
             x: main_scene.size.width/3 - main_scene.size.width/16,
@@ -48,14 +48,14 @@ class Hero: SKSpriteNode {
         loadPhysicsBodyWithSize(size)
     }
     
-    func loadPhysicsBodyWithSize(size: CGSize) {
+    func loadPhysicsBodyWithSize(_ size: CGSize) {
         // make physicsBody a bit smaller than the Image
-        physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(size.width - 10, size.height - 20))
+        physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: size.width - 10, height: size.height - 20))
         physicsBody?.categoryBitMask = HERO_CATEGORY
         physicsBody?.contactTestBitMask = SQUARE_CATEGORY
         physicsBody?.contactTestBitMask = BASELINE_CATEGORY
         physicsBody?.affectedByGravity = true
-        physicsBody?.dynamic = true
+        physicsBody?.isDynamic = true
         // prevent rotation of the hero
         // maybe give that away with new goal, hero should not fall
         physicsBody?.allowsRotation = false
@@ -66,7 +66,7 @@ class Hero: SKSpriteNode {
         if(jumping){ return; }
         
         jump_count += 1
-        physicsBody?.applyImpulse(CGVectorMake(0, 80))
+        physicsBody?.applyImpulse(CGVector(dx: 0, dy: 80))
         
         // == 2 for double jump
         if( jump_count == 2){
@@ -92,13 +92,13 @@ class Hero: SKSpriteNode {
     
     func startRun(){
         position = start_pos;
-        self.runAction(SKAction.repeatActionForever(
-            SKAction.animateWithTextures(TextureArray, timePerFrame: 0.1)))
+        self.run(SKAction.repeatForever(
+            SKAction.animate(with: TextureArray, timePerFrame: 0.1)))
     }
     
     func continueRun(){
-        self.runAction(SKAction.repeatActionForever(
-            SKAction.animateWithTextures(TextureArray, timePerFrame: 0.1)))
+        self.run(SKAction.repeatForever(
+            SKAction.animate(with: TextureArray, timePerFrame: 0.1)))
     }
     
     func stopRun(){

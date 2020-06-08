@@ -12,10 +12,10 @@ import SpriteKit
 
 class ObstacleLowPosition{
     
-    private var max_positions: Int
-    private var positions = Array<CGPoint>()
-    private var ret_positions = Array<CGPoint>()
-    private var pos_count = 0
+    fileprivate var max_positions: Int
+    fileprivate var positions = Array<CGPoint>()
+    fileprivate var ret_positions = Array<CGPoint>()
+    fileprivate var pos_count = 0
     
     init(max_count: Int){
         max_positions = max_count
@@ -40,7 +40,7 @@ class ObstacleLowPosition{
         return ret_positions
     }
     
-    private func createPositionPool(){
+    fileprivate func createPositionPool(){
         
         // first left
         let pos1 = CGPoint(x: SCENE_WIDTH,

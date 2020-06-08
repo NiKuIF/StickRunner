@@ -9,18 +9,18 @@
 import Foundation
 
 enum UserSaves {
-    case HIGHSCORE
+    case highscore
 }
 
 class HighscoreSave {
     
-    static func saveHighscore(highscore: NSInteger){
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setValue(highscore, forKey: "\(UserSaves.HIGHSCORE)")
+    static func saveHighscore(_ highscore: NSInteger){
+        let defaults = UserDefaults.standard
+        defaults.setValue(highscore, forKey: "\(UserSaves.highscore)")
     }
     
     static func getHighscore()-> NSInteger{
-        let defaults = NSUserDefaults.standardUserDefaults()
-        return defaults.integerForKey("\(UserSaves.HIGHSCORE)");
+        let defaults = UserDefaults.standard
+        return defaults.integer(forKey: "\(UserSaves.highscore)");
     }
 }

@@ -15,9 +15,9 @@ import Foundation
 
 class GameStateClass {
     
-    var game_state: GAME_STATE = GAME_STATE.START_SCREEN {
+    var game_state: GAME_STATE = GAME_STATE.start_SCREEN {
         willSet(new_state) {
-            NSLog(" NEW_STATE : \(String(new_state))");
+            NSLog(" NEW_STATE : \(String(describing: new_state))");
             DebugWindow.printGameState(new_state);
         }
         didSet {

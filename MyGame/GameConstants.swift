@@ -13,15 +13,15 @@ import UIKit
 // ***ENUMS*********************************************************************
 
 enum GAME_STATE {
-    case START_SCREEN
-    case GAME_PLAY
-    case GAME_DEAD
+    case start_SCREEN
+    case game_PLAY
+    case game_DEAD
 }
 
 enum SQUARE_TYPE {
-    case DEFAULT
-    case RED
-    case BLUE
+    case `default`
+    case red
+    case blue
 }
 
 
@@ -44,7 +44,7 @@ let BLUE_SQUARE_CATEGORY: UInt32 = (0x1 << 4)   // 16
 let SQUARE_SIDE: CGFloat = 30.0
 
 // Obstacle creation Speed
-let OBST_SPEED: NSTimeInterval = 0.6666666
+let OBST_SPEED: TimeInterval = 0.6666666
 
 
 // ***Fixed VARS****************************************************************

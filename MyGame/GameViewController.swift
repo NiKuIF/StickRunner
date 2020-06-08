@@ -31,10 +31,10 @@ class GameViewController: UIViewController {
             skView.ignoresSiblingOrder = true
             
             /* Set the scale mode to scale to fit the window */
-            scene!.scaleMode = .AspectFill
+            scene!.scaleMode = .aspectFill
             
             /* Disable Multiple Touches*/
-            skView.multipleTouchEnabled = false
+            skView.isMultipleTouchEnabled = false
             
             skView.presentScene(scene)
         }
@@ -45,47 +45,47 @@ class GameViewController: UIViewController {
         DebugWindow.clearScreen();        
         
         // resign active Observer
-        NSNotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
             selector: #selector(GameViewController.obMethResignActive(_:)),
-            name: UIApplicationWillResignActiveNotification,
+            name: UIApplication.willResignActiveNotification,
             object: nil)
         
         // did become active Observer
-        NSNotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
             selector: #selector(GameViewController.obMethDidBecomeActive(_:)),
-            name: UIApplicationDidBecomeActiveNotification,
+            name: UIApplication.didBecomeActiveNotification,
             object: nil)
     }
     
-    @objc func obMethResignActive(notific: NSNotification) {
+    @objc func obMethResignActive(_ notific: Notification) {
         // NSLog("obMethResignActive")
         if( obstacle_handler == nil ||
-            gsc.game_state == GAME_STATE.START_SCREEN ||
-            gsc.game_state == GAME_STATE.GAME_DEAD){
+            gsc.game_state == GAME_STATE.start_SCREEN ||
+            gsc.game_state == GAME_STATE.game_DEAD){
             return; }
         
         obstacle_handler.pauseGenerating()
     }
     
-    @objc func obMethDidBecomeActive(notific: NSNotification) {
+    @objc func obMethDidBecomeActive(_ notific: Notification) {
         //NSLog("obMethDidBecomeActive")
         if( obstacle_handler == nil ||
-            gsc.game_state == GAME_STATE.START_SCREEN ||
-            gsc.game_state == GAME_STATE.GAME_DEAD){
+            gsc.game_state == GAME_STATE.start_SCREEN ||
+            gsc.game_state == GAME_STATE.game_DEAD){
             return; }
         
         obstacle_handler.continueSquareGeneration()
     }
     
-    override func shouldAutorotate() -> Bool {
+    override var shouldAutorotate : Bool {
         return true
     }
 
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-            return .AllButUpsideDown
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return .allButUpsideDown
         } else {
-            return .All
+            return .all
         }
     }
 
@@ -94,7 +94,7 @@ class GameViewController: UIViewController {
         // Release any cached data, images, etc that aren't in use.
     }
 
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
 }
