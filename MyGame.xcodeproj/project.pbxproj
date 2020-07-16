@@ -38,7 +38,7 @@
 		2E60D7CC1CE2817C0007318D /* ObstacleGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleGenerator.swift; sourceTree = "<group>"; };
 		2E625DC71CEBCAF8004F2C63 /* ObstacleHighPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleHighPosition.swift; sourceTree = "<group>"; };
 		2E625DC91CEBCB2E004F2C63 /* ObstacleLowPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleLowPosition.swift; sourceTree = "<group>"; };
-		2E69CF6B1CCCEE650058B069 /* MyGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E69CF6B1CCCEE650058B069 /* StickRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StickRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E69CF6E1CCCEE650058B069 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E69CF701CCCEE650058B069 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		2E69CF721CCCEE650058B069 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -107,7 +107,7 @@
 		2E69CF6C1CCCEE650058B069 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2E69CF6B1CCCEE650058B069 /* MyGame.app */,
+				2E69CF6B1CCCEE650058B069 /* StickRunner.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,7 +161,7 @@
 			);
 			name = MyGame;
 			productName = MyGame;
-			productReference = 2E69CF6B1CCCEE650058B069 /* MyGame.app */;
+			productReference = 2E69CF6B1CCCEE650058B069 /* StickRunner.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -374,8 +374,8 @@
 				INFOPLIST_FILE = MyGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = IRONFactory.MyGame;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = nikuGames.StickRunner;
+				PRODUCT_NAME = StickRunner;
 				PROVISIONING_PROFILE = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.2;
@@ -391,8 +391,8 @@
 				INFOPLIST_FILE = MyGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = IRONFactory.MyGame;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = nikuGames.StickRunner;
+				PRODUCT_NAME = StickRunner;
 				PROVISIONING_PROFILE = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.2;
