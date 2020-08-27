@@ -72,8 +72,9 @@ class ObstacleSquare: SKSpriteNode {
         }        
         
         physicsBody?.contactTestBitMask = HERO_CATEGORY
-        physicsBody?.affectedByGravity = false
-        physicsBody?.isDynamic = false // static objects
+        physicsBody?.affectedByGravity = true
+        physicsBody?.isDynamic = true // static objects
+        physicsBody?.density = 0.7
     }
     
     func addSmallSquare() {

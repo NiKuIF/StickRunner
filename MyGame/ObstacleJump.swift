@@ -22,7 +22,6 @@ class ObstacleJumpPosition{
     fileprivate var squares = Array<ObstacleSquare>()
     
     init(){
-        
         // create blue square
         createBlueSquare();
     
