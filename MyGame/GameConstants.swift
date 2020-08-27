@@ -54,4 +54,4 @@ var SCENE_HEIGHT: CGFloat = 0.0
 
 // ***Variable VARS*************************************************************
 var SQUARE_SPEED: CGFloat = 200.0 
-var DEBUG_WINDOW: Bool = true
+var DEBUG_WINDOW: Bool = false
